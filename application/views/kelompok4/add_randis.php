@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/bootstrap/css/bootstrap.min.css"); ?>"> 
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/fonts/circular-std/style.css"); ?>"> 
-    <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/libs/css/style.css"); ?>"> 
+    <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/libs/css/style_kelompok4.css"); ?>"> 
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/fonts/fontawesome/css/fontawesome-all.css"); ?>">
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/datepicker/tempusdominus-bootstrap-4.css"); ?>">
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/inputmask/css/inputmask.css"); ?>">
@@ -74,14 +74,25 @@
                             <div class="card">
                                 <h5 class="card-header">Tambah Data Randis</h5>
                                 <div class="card-body">
-                                    <form action="#" id="basicform" data-parsley-validate="" method="post">
+                                    <?php if (@$sukses) { ?>
+                                        <div class="card-body border-top">
+                                            
+                                            <div class="alert alert-primary" role="alert">
+                                                <h4 class="alert-heading">Selamat !</h4>
+                                                <p>Anda berhasil menambahkan data.</p>
+                                                <hr>
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                   <?php } ?>
+                                    <form action="#" id="basicform" data-parsley-validate="" method="post" enctype="multipart/form-data">
 
                                         <div class="form-group">
                                             <label for="jabatan">Jabatan</label>
                                             <select name="JABATAN"  class="form-control form-control-lg" data-placeholder="Pilih Jabatan">
                     
                                                 <?php foreach($jabatan as $jabatan){?>
-                                                  <option value="<?php echo $jabatan->id; ?>"><?php echo $jabatan->pemegang; ?>
+                                                  <option value="<?php echo $jabatan->pemegang; ?>"><?php echo $jabatan->pemegang; ?>
                                        
                                                 <?php } ?>
                                           </select>
@@ -109,7 +120,7 @@
                                             <select name="JENIS"  class="form-control form-control-lg" data-placeholder="Pilih JENIS KENDARAAN">
                     
                                                 <?php foreach($jenis as $jenis){?>
-                                                  <option value="<?php echo $jenis->id; ?>"><?php echo $jenis->jenis; ?> </option>
+                                                  <option value="<?php echo $jenis->jenis; ?>"><?php echo $jenis->jenis; ?> </option>
                                        
                                                 <?php } ?>
                                           </select>
@@ -121,7 +132,7 @@
                                             <select name="TYPE"  class="form-control form-control-lg" data-placeholder="Pilih TYPE KENDARAAN">
                     
                                                 <?php foreach($type as $type){?>
-                                                  <option value="<?php echo $type->id; ?>"><?php echo $type->type; ?>
+                                                  <option value="<?php echo $type->type; ?>"><?php echo $type->type; ?>
                                        
                                                 <?php } ?>
                                           </select>
@@ -137,7 +148,7 @@
 
                                                 foreach($merk as $merek){?>
 
-                                                  <option value="<?php echo $merek->id; ?>"><?php echo $merek->merek; ?></option>
+                                                  <option value="<?php echo $merek->merek; ?>"><?php echo $merek->merek; ?></option>
                                        
                                                 <?php } 
                                                 ?>
@@ -149,7 +160,7 @@
                                             <select name="SILINDER"  class="form-control form-control-lg" data-placeholder="Pilih SILINDER KENDARAAN">
                     
                                                 <?php foreach($silinder as $silinders){?>
-                                                  <option value="<?php echo $silinders->id; ?>"><?php echo $silinders->silinder; ?> </option>
+                                                  <option value="<?php echo $silinders->silinder; ?>"><?php echo $silinders->silinder; ?> </option>
                                        
                                                 <?php } ?>
                                           </select>
@@ -163,7 +174,7 @@
                                             <label for="">Foto Kendaraan</label>
                                         </div>
                                         <div class="custom-file mb-3">
-                                                <input type="file" class="custom-file-input" id="customFile">
+                                                <input type="file" class="custom-file-input" id="customFile" name="foto_mobil">
                                                 <label class="custom-file-label" for="customFile">Upload</label>
                                         </div>
 
@@ -182,6 +193,17 @@
                                             </div>
                                         </div>
                                     </form>
+                                    <?php if (@$sukses) { ?>
+                                        <div class="card-body border-top">
+                                            
+                                            <div class="alert alert-primary" role="alert">
+                                                <h4 class="alert-heading">Selamat !</h4>
+                                                <p>Anda berhasil menambahkan data.</p>
+                                                <hr>
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                   <?php } ?>
                                 </div>
                             </div>
                         </div>

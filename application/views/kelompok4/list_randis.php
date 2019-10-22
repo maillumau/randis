@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/bootstrap/css/bootstrap.min.css"); ?>"> 
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/fonts/circular-std/style.css"); ?>"> 
-    <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/libs/css/style.css"); ?>"> 
+    <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/libs/css/style_kelompok4.css"); ?>"> 
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/fonts/fontawesome/css/fontawesome-all.css"); ?>">
 
      <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/datatables/css/dataTables.bootstrap4.css"); ?>">
@@ -104,7 +104,7 @@
                                                 <td><?php echo $randis->NO_MESIN; ?></td>
                                                 <td><?php echo $randis->JENIS; ?></td>
                                                 <td><?php echo $randis->TYPE; ?></td>
-                                                <td><?php echo $randis->MERK; ?></td>
+                                                <td class="merek"><?php echo $randis->MERK; ?></td>
                                                 <td><?php echo $randis->SILINDER; ?></td>
                                                 <td><?php echo $randis->TAHUN; ?></td>
                                                 <td>
@@ -114,16 +114,26 @@
                                                                 $img = $this->config->item('base_url').'uploads/foto_mobil/'.$randis->GAMBAR; 
                                                             }  
                                                      ?>
-                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 50px; width: 50px;" >
+                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 200px; width: 200px;" >
                               
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-dark active kartu">
-                                                    <input type="hidden" value="<?php echo $randis->NO_PLAT;?>" class="NO_PLAT"><div><i class="fa fa-credit-card"></i></div>
-                                                    </a>
-                                                    &nbsp;&nbsp;
-
-
+                                                    <button data-toggle="modal" data-target="#myModal">
+                                                        <a href="#" class="btn btn-dark active kartu">
+                                                        <input type="hidden" value="<?php echo $randis->NO_PLAT;?>" class="NO_PLAT"><div><i class="fa fa-credit-card"></i></div>
+                                                        </a>
+                                                    </button>
+                                                    <br>
+                                                    <br>
+                                                    <br>
+                                                    <button>
+                                                        <a href="<?php echo site_url("kelompok4/delete/".$randis->NO); ?>" onclick="return confirm('Yakin di hapus?')" class="" style="color:#FF0000;"> 
+                                                         <i class="fa fa-trash"></i></a>
+                                                    </button>
+                                                    <button>
+                                                        <a href="<?php echo site_url("kelompok4/edit/".$randis->NO); ?>" onclick="return confirm('Yakin di ubah?')" class="" style="color:#FF0000;"> 
+                                                         <i class="fas fa-edit"></i></a>
+                                                    </button>
 
                                                 </td>
                                             </tr>
@@ -187,6 +197,54 @@
     <!-- Optional JavaScript -->
 
 
+    <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="no_plat"></h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              
+            </div>
+            <div class="modal-body">
+              <p id="merek"></p>
+              <!-- <p><img id="image_qr"> </p> -->
+
+                             <div class="card card-figure">
+                                    <!-- .card-figure -->
+                                    <figure class="figure">
+                                        <!-- .figure-img -->
+                                        <div class="figure-attachment">
+                                            <img id="image_qr" alt="Card image cap" class="img-fluid"> </div>
+                                        <!-- /.figure-img -->
+                                        <figcaption class="figure-caption">
+                                            <ul class="list-inline d-flex text-muted mb-0">
+                                                <li class="list-inline-item text-truncate mr-auto"> download QRCode </li>
+                                                 <li class="list-inline-item">
+                                                        <a id="ref_download" download="" style="color:#FF0000;">  <span><i class="fas fa-download "></i></span></a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="#" class="btn btn-reset text-muted" title="More actions">
+                                                            <span class="fas fa-caret-down"></span>
+                                                        </a>
+                                                    </li>
+                                            </ul>
+                                        </figcaption>
+                                    </figure>
+                                    <!-- /.card-figure -->
+                                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+
 
      <script src="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/jquery/jquery-3.3.1.min.js"); ?>"></script>
      <script src="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/bootstrap/js/bootstrap.bundle.js"); ?>"></script>
@@ -228,11 +286,12 @@
 
                          $('#datatable_randis').on('click', 'tbody tr .kartu', function () {
                             var base = '<?=base_url()?>';
-                            var barcode_path = base + "uploads/foto_mobil/";
+                            var barcode_path = base + "uploads/foto_qrcode/";
 
                             var no_plat = $(this).closest('tr').find('.no_plat').text();
+                            var merek = $(this).closest('tr').find('.merek').text();
 
-                            alert(no_plat);
+                            //alert(no_plat);
 
 
                             $.ajax({
@@ -244,12 +303,11 @@
                                     success: function(data) {
 
                                       console.log(data);
-                                      // $('#nama').html(nama);
-                                      // $('#my_image').attr('src',foto);
-                                      // $('#image_barcode').attr('src',barcode_path);
-                                      // $('#casis_no').val(no_casis);   
-                                      // $('#modaldemo1').modal('show');                             
-
+                                       $('#no_plat').text(no_plat);
+                                       $('#merek').text(merek);
+                                      $('#image_qr').attr('src',barcode_path+no_plat+'.png');
+                                       $('#ref_download').attr('href',barcode_path+no_plat+'.png');
+                                                               
                                     },
                                     error: function (data) {
                                         console.log('An error occurred.');
