@@ -14,7 +14,7 @@ if ( ! function_exists('_is_user_login'))
                  
                  return true;
             }else{
-                $thi->load->view("admin/common/not_access");
+                //$thi->load->view("admin/common/not_access");
                 return false;    
             }
             
