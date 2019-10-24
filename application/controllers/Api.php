@@ -40,7 +40,7 @@ class Api extends CI_Controller {
     public function tampil_randis_by($no_plat){
               $data = array(); 
            
-              $q = $this->db->query("select * from `data_randis` where NO_PLAT = '$no_plat'");
+              $q = $this->db->query("select * from `randis` where NO_PLAT = '$no_plat'");
               $data["result"] = $q->result();
            
              echo json_encode($data);
