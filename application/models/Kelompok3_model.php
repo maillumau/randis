@@ -12,7 +12,7 @@ class Kelompok3_model extends CI_Model{
     }
 
     public function get_type_kendaraan(){
-        $q = $this->db->query("select * from typeran");
+        $q = $this->db->query("select * from typeran where flag_del='0'");
         return $q->result();
     }
     public function get_jabatan(){

@@ -303,6 +303,26 @@ class Kelompok3 extends CI_Controller {
 
             $data = array();
 
+           $this->load->model("kelompok3_model");
+           $data = array();
+
+           if($_POST){
+
+                    $type = $this->input->post("type");
+                    $kode = $this->input->post("kode");
+
+                    $this->load->model("common_model");
+                    $this->common_model->data_insert("typeran",
+                    array(
+                                    "type" => $type,
+                                    "kode" => $kode,
+                                    'flag_del' => 0
+                    ));
+                    $data["sukses"] =  "data berhasil disimpan";
+           }
+
+           $data['tipe_kendaraan'] = $this->kelompok3_model->get_type_kendaraan();
+
 
 
            $this->load->view("kelompok3/add_type",$data);
@@ -330,6 +350,14 @@ class Kelompok3 extends CI_Controller {
 
         $this->db->query("update jenisran set flag_del = 1 where id = '".$id."'");
         redirect("kelompok3/add_jenis");
+
+    }
+
+
+    public function delete_tipe($id){
+
+        $this->db->query("update typeran set flag_del = 1 where id = '".$id."'");
+        redirect("kelompok3/add_type");
 
     }
 }
