@@ -264,7 +264,7 @@ class Kelompok4 extends CI_Controller {
 
     function delete($id){ 
 
-        $this->db->query("update data_randis set flag_del = 1 where NO = '".$id."'");
+        $this->db->query("update randis set flag_del = 1 where NO = '".$id."'");
         redirect("kelompok4/list_randis");
            
     }
