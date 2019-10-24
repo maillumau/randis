@@ -2,7 +2,7 @@
 class Kelompok3_model extends CI_Model{
 
     public function get_merek_randis(){
-        $q = $this->db->query("select * from merekran");
+        $q = $this->db->query("select * from merekran where flag_del='0'");
         return $q->result();
     }
    

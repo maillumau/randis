@@ -56,7 +56,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Randis</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Jenis Kendaraan</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Merek Kendaraan</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -69,13 +69,24 @@
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Tambah Jenis Kendaraan</h5>
+                                <h5 class="card-header">Tambah Merek Kendaraan</h5>
                                 <div class="card-body">
+                                    <?php if (@$sukses) { ?>
+                                        <div class="card-body border-top">
+                                            
+                                            <div class="alert alert-primary" role="alert">
+                                                <h4 class="alert-heading">Selamat !</h4>
+                                                <p>Anda berhasil menambahkan data.</p>
+                                                <hr>
+                                                <p class="mb-0"></p>
+                                            </div>
+                                        </div>
+                                   <?php } ?>
                                     <form id="form" data-parsley-validate="" novalidate="" method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
-                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Jenis</label>
+                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Merek</label>
                                             <div class="col-9 col-lg-10">
-                                                <input id="jenis" type="text" required="" placeholder="Masukkan Jenis Kendaraan" class="form-control" name="jenis">
+                                                <input id="type" type="text" required="" placeholder="Masukkan Merek Kendaraan" class="form-control" name="merek">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -88,6 +99,7 @@
                                             <div class="col-sm-6 pl-0">
                                                 <p class="text-right">
                                                     <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                                                    
                                                 </p>
                                             </div>
                                         </div>
@@ -100,14 +112,14 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
                         <div class="card">
-                            <h5 class="card-header">Daftar Jenis Kendaraan</h5>
+                            <h5 class="card-header">Daftar Merek Kendaraan</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first" id="datatable_randis">
                                         <thead>
                                             <tr>
                                             	<th>No</th>
-                                                <th>Jenis Kendaraan</th>
+                                                <th>Merek Kendaraan</th>
                                                 <th>Kode</th>           
                                                 <th></th>
                                             </tr>
@@ -116,13 +128,13 @@
 
                                         <tbody>
                                             <?php $no = 1; ?>
-                                            <?php foreach ($jenis_kendaraan as $key => $value) { ?>
+                                            <?php foreach ($merek_kendaraan as $key => $value) { ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td> <?php echo $value->jenis;?></td>
+                                                <td> <?php echo $value->merek;?></td>
                                                 <td><?php echo $value->kode;?> </td>
                                                 <td> <button>
-                                                        <a href="<?php echo site_url("kelompok3/delete_jenis/".$value->id); ?>" onclick="return confirm('Yakin di hapus?')" class="" style="color:#FF0000;"> 
+                                                        <a href="<?php echo site_url("kelompok3/delete_tipe/".$value->id); ?>" onclick="return confirm('Yakin di hapus?')" class="" style="color:#FF0000;"> 
                                                          <i class="fa fa-trash"></i></a>
                                                     </button> </td>
                                              </tr>   
@@ -131,7 +143,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Jenis Kendaraan</th>
+                                                <th>Merek Kendaraan</th>
                                                 <th>Kode</th>           
                                                 <th></th>
                                             </tr>

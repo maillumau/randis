@@ -339,6 +339,25 @@ class Kelompok3 extends CI_Controller {
             $data = array();
 
 
+           $this->load->model("kelompok3_model");
+           $data = array();
+
+           if($_POST){
+
+                    $merek = $this->input->post("merek");
+                    $kode = $this->input->post("kode");
+
+                    $this->load->model("common_model");
+                    $this->common_model->data_insert("merekran",
+                    array(
+                                    "merek" => $merek,
+                                    "kode" => $kode,
+                                    'flag_del' => 0
+                    ));
+                    $data["sukses"] =  "data berhasil disimpan";
+           }
+           $data['merek_kendaraan'] = $this->kelompok3_model->get_merek_randis();
+
 
            $this->load->view("kelompok3/add_merk",$data);
 
@@ -358,6 +377,14 @@ class Kelompok3 extends CI_Controller {
 
         $this->db->query("update typeran set flag_del = 1 where id = '".$id."'");
         redirect("kelompok3/add_type");
+
+    }
+
+
+   public function delete_merek($id){
+
+        $this->db->query("update merekran set flag_del = 1 where id = '".$id."'");
+        redirect("kelompok3/add_merk");
 
     }
 }
