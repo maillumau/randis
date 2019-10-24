@@ -269,6 +269,68 @@ class Kelompok3 extends CI_Controller {
            
     }
 
-   
+
+    public function add_jenis(){
+        if(_is_user_login($this)){
+           $this->load->model("kelompok3_model");
+           $data = array();
+
+           if($_POST){
+
+                    $jenis = $this->input->post("jenis");
+                    $kode = $this->input->post("kode");
+
+                    $this->load->model("common_model");
+                    $this->common_model->data_insert("jenisran",
+                    array(
+                                    "jenis" => $jenis,
+                                    "kode" => $kode,
+                                    'flag_del' => 0
+                    ));
+                    $data["sukses"] =  "data berhasil disimpan";
+           }
+
+           $data['jenis_kendaraan'] = $this->kelompok3_model->get_jenis_randis();
+
+
+           $this->load->view("kelompok3/add_jenis",$data);
+        }
+
+    }
+
+    public function add_type(){
+        if(_is_user_login($this)){
+
+            $data = array();
+
+
+
+           $this->load->view("kelompok3/add_type",$data);
+
+        }
+        
+    }
+
+    public function add_merk(){
+
+        if(_is_user_login($this)){
+
+
+            $data = array();
+
+
+
+           $this->load->view("kelompok3/add_merk",$data);
+
+        }
+        
+    }
+
+    public function delete_jenis($id){
+
+        $this->db->query("update jenisran set flag_del = 1 where id = '".$id."'");
+        redirect("kelompok3/add_jenis");
+
+    }
 }
 

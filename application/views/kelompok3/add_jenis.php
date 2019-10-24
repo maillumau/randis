@@ -56,7 +56,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Randis</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Data Randis</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Jenis Kendaraan</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -67,102 +67,73 @@
                 <!-- end pageheader -->
                 <!-- ============================================================== -->
                 <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Tambah Jenis Kendaraan</h5>
+                                <div class="card-body">
+                                    <form id="form" data-parsley-validate="" novalidate="" method="post" enctype="multipart/form-data">
+                                        <div class="form-group row">
+                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Jenis</label>
+                                            <div class="col-9 col-lg-10">
+                                                <input id="jenis" type="text" required="" placeholder="Masukkan Jenis Kendaraan" class="form-control" name="jenis">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputWebSite" class="col-3 col-lg-2 col-form-label text-right">Kode</label>
+                                            <div class="col-9 col-lg-10">
+                                                <input id="kode" type="text" required="" placeholder="Masukkan Kode" class="form-control" name="kode">
+                                            </div>
+                                        </div>
+                                        <div class="row pt-2 pt-sm-5 mt-1">
+                                            <div class="col-sm-6 pl-0">
+                                                <p class="text-right">
+                                                    <button type="submit" class="btn btn-space btn-primary">Submit</button>
+                                                    <button class="btn btn-space btn-secondary">Cancel</button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
                     <!-- ============================================================== -->
                     <!-- basic table  -->
                     <!-- ============================================================== -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
                         <div class="card">
-                            <h5 class="card-header">Data Randis</h5>
+                            <h5 class="card-header">Daftar Jenis Kendaraan</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first" id="datatable_randis">
                                         <thead>
                                             <tr>
                                             	<th>No</th>
-                                                <th>NO REG LAMA</th>
-                                                <th>No REG BARU</th>
-                                                <th>No Rangka</th>
-                                                <th>No Mesin</th>
-                                                <th>Jenis</th>
-                                                <th>Type</th>
-                                                <th>Merk</th>
-                                                <th>Kubikasi</th>
-                                                <th>Tahun</th>
-                                                <th>Kondisi</th>
-                                                <th>Pemegang</th>
-                                                <th>Gambar</th>
+                                                <th>Jenis Kendaraan</th>
+                                                <th>Kode</th>           
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <?php $this->load->model("kelompok3_model");?>
-                                            <?php $no = 1; ?>
-                                            <?php foreach($data_randis as $randis){?>
 
+
+                                        <tbody>
+                                            <?php $no = 1; ?>
+                                            <?php foreach ($jenis_kendaraan as $key => $value) { ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
-                                                <td><?php echo $randis->noreg_lama; ?></td>
-                                                <td class="no_plat"><?php echo $randis->noreg_baru; ?></td>
-                                                <td><?php echo $randis->no_rangka; ?></td>
-                                                <td><?php echo $randis->no_mesin; ?></td>
-                                                <td><?php echo $randis->jenis; ?>
-                                                </td>
-                                                <td><?php echo $randis->type; ?>
-                                                </td>
-                                                <td class="merek"><?php echo $randis->merek; ?></td>
-                                                <td><?php echo $randis->kubikasi; ?></td>
-                                                <td><?php echo $randis->tahun; ?></td>
-                                                <td><?php echo $randis->kondisi; ?></td>
-                                                <td><?php echo $randis->pemegang; ?></td>
-                                                <td>
-                                                     <?php
-                                                            $img = base_url("uploads/default.png");
-                                                            if($randis->foto != ""){
-                                                                $img = $this->config->item('base_url').'uploads/foto_mobil/'.$randis->foto; 
-                                                            }  
-                                                     ?>
-                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 200px; width: 200px;" >
-                              
-                                                </td>
-                                                <td>
-                                                    <button data-toggle="modal" data-target="#myModal">
-                                                        <a href="#" class="btn btn-dark active kartu">
-                                                        <input type="hidden" value="<?php echo $randis->noreg_baru;?>" class="NO_PLAT"><div><i class="fa fa-credit-card"></i></div>
-                                                        </a>
-                                                    </button>
-                                                    <br>
-                                                    <br>
-                                                    <br>
-                                                    <button>
-                                                        <a href="<?php echo site_url("kelompok3/delete/".$randis->id); ?>" onclick="return confirm('Yakin di hapus?')" class="" style="color:#FF0000;"> 
+                                                <td> <?php echo $value->jenis;?></td>
+                                                <td><?php echo $value->kode;?> </td>
+                                                <td> <button>
+                                                        <a href="<?php echo site_url("kelompok3/delete_jenis/".$value->id); ?>" onclick="return confirm('Yakin di hapus?')" class="" style="color:#FF0000;"> 
                                                          <i class="fa fa-trash"></i></a>
-                                                    </button>
-                                                    <button>
-                                                        <a href="<?php echo site_url("kelompok3/edit/".$randis->id); ?>" onclick="return confirm('Yakin di ubah?')" class="" style="color:#FF0000;"> 
-                                                         <i class="fas fa-edit"></i></a>
-                                                    </button>
-
-                                                </td>
-                                            </tr>
-
+                                                    </button> </td>
+                                             </tr>   
                                             <?php } ?>
-
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th>No</th>
-                                                <th>NO REG LAMA</th>
-                                                <th>No REG BARU</th>
-                                                <th>No Rangka</th>
-                                                <th>No Mesin</th>
-                                                <th>Jenis</th>
-                                                <th>Type</th>
-                                                <th>Merk</th>
-                                                <th>Kubikasi</th>
-                                                <th>Tahun</th>
-                                                <th>Kondisi</th>
-                                                <th>Pemegang</th>
-                                                <th>Gambar</th>
+                                                <th>Jenis Kendaraan</th>
+                                                <th>Kode</th>           
                                                 <th></th>
                                             </tr>
                                         </tfoot>

@@ -20,7 +20,7 @@ class Kelompok3_model extends CI_Model{
         return $q->result();
     }
     public function get_jenis_randis(){
-        $q = $this->db->query("select * from jenisran");
+        $q = $this->db->query("select * from jenisran where flag_del='0'");
         return $q->result();
     }
 
@@ -42,5 +42,11 @@ class Kelompok3_model extends CI_Model{
         $q = $this->db->get();
         return $q->result();
     }
+
+    public function get_type_by_code($code){
+         $q = $this->db->query("select * from typeran where  kode = '".$code."' limit 1");
+        return $q->row();
+    }
+
 }
 ?>
