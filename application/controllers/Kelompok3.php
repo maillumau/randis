@@ -135,7 +135,7 @@ class Kelompok3 extends CI_Controller {
                         $file_name="";
                         $config['upload_path'] = './uploads/foto_mobil/';
                         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                        $new_name = $this->input->post("NO_PLAT").$this->input->post("MERK");
+                        $new_name = $this->input->post("noreg_baru").$this->input->post("merek");
                         $config['file_name'] = $new_name;
                         $this->load->library('upload', $config);
 
@@ -143,48 +143,50 @@ class Kelompok3 extends CI_Controller {
 
                         
 
-                        if($_FILES["foto_mobil"]["size"] > 0)
+                        if($_FILES["foto"]["size"] > 0)
 
-                                if ( ! $this->upload->do_upload('foto_mobil')){
+                                if ( ! $this->upload->do_upload('foto')){
                                     $error = array('error' => $this->upload->display_errors());
                         
                                 }else{
                                     $this->upload->data();
 
        
-                                    $path = $_FILES['foto_mobil']['name'];
+                                    $path = $_FILES['foto']['name'];
                                     $ext = pathinfo($path, PATHINFO_EXTENSION);
                                     
                                 } 
 
-                                $JABATAN = $this->input->post("JABATAN");
-                                $NO_PLAT = $this->input->post("NO_PLAT");
-                                $NO_RANGKA = $this->input->post("NO_RANGKA");
-                                $NO_MESIN = $this->input->post("NO_MESIN");
-                                $JENIS = $this->input->post("JENIS");
-                                $TYPE = $this->input->post("TYPE");
-                                $MERK = $this->input->post("MERK");
-                                $SILINDER = $this->input->post("SILINDER");
-                                $TAHUN = $this->input->post("TAHUN");
-
-                                $GAMBAR = $NO_PLAT.$MERK.'.'.$ext;
+                                $noreg_lama = $this->input->post("noreg_lama");
+                                $noreg_baru = $this->input->post("noreg_baru");
+                                $no_rangka = $this->input->post("no_rangka");
+                                $no_mesin = $this->input->post("no_mesin");
+                                $jenis = $this->input->post("jenis");
+                                $type = $this->input->post("type");
+                                $merek = $this->input->post("merek");
+                                $kubikasi = $this->input->post("kubikasi");
+                                $tahun = $this->input->post("tahun");
+                                $kondisi = $this->input->post("kondisi");
+                                $pemegang = $this->input->post("pemegang");
+                                $foto = $noreg_baru.$merek.'.'.$ext;
                             
  
             
                             
                                 $this->load->model("common_model");
-                                $this->common_model->data_insert("randis",
+                                $this->common_model->data_insert("kuatalmat",
                                     array(
-                                    "JABATAN" => $JABATAN,
-                                    "NO_PLAT" => $NO_PLAT,
-                                    "NO_RANGKA" => $NO_RANGKA,
-                                    "NO_MESIN" => $NO_MESIN,
-                                    "JENIS" => $JENIS,
-                                    "TYPE" => $TYPE,
-                                    "MERK" => $MERK,
-                                    "SILINDER" => $SILINDER,
-                                    "TAHUN" => $TAHUN,
-                                    "GAMBAR" => $GAMBAR,
+                                    "noreg_lama" => $noreg_lama,
+                                    "noreg_baru" => $noreg_baru,
+                                    "no_rangka" => $no_rangka,
+                                    "no_mesin" => $no_mesin,
+                                    "jenis" => $jenis,
+                                    "type" => $type,
+                                    "merek" => $merek,
+                                    "kubikasi" => $kubikasi,
+                                    "tahun" => $tahun,
+                                    "pemegang" => $pemegang,
+                                    "foto" => $foto,
                                     'flag_del' => 0
                                     ));
 

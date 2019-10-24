@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/bootstrap/css/bootstrap.min.css"); ?>"> 
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/fonts/circular-std/style.css"); ?>"> 
-    <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/libs/css/style_kelompok4.css"); ?>"> 
+    <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/libs/css/style.css"); ?>"> 
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/fonts/fontawesome/css/fontawesome-all.css"); ?>">
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/datepicker/tempusdominus-bootstrap-4.css"); ?>">
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/inputmask/css/inputmask.css"); ?>">
@@ -32,7 +32,7 @@
         <!-- ============================================================== -->
         <!-- left sidebar -->
         <!-- ============================================================== -->
-        <?php  $this->load->view("kelompok4/common/left_sidebar"); ?>
+        <?php  $this->load->view("kelompok3/common/left_sidebar"); ?>
         <!-- ============================================================== -->
         <!-- end left sidebar -->
         <!-- ============================================================== -->
@@ -86,38 +86,28 @@
                                         </div>
                                    <?php } ?>
                                     <form action="#" id="basicform" data-parsley-validate="" method="post" enctype="multipart/form-data">
+                                        <div class="form-group col-lg-4">
 
-                                        <div class="form-group">
-                                            <label for="jabatan">Jabatan</label>
-                                            <select name="JABATAN"  class="form-control form-control-lg" data-placeholder="Pilih Jabatan">
-                    
-                                                <?php foreach($jabatan as $jabatan){?>
-                                                  <option value="<?php echo $jabatan->pemegang; ?>"><?php echo $jabatan->pemegang; ?>
-                                       
-                                                <?php } ?>
-                                          </select>
+                                            <label for="">No Reg Lama</label>
+                                            <input id="" type="text" name="noreg_lama" data-parsley-trigger="change" required="" placeholder="Masukkan No Reg Lama" autocomplete="off" class="form-control">
                                         </div>
-                                        <div class="form-group">
-
-                                            <label for="">No Plat</label>
-                                            <input id="" type="text" name="NO_PLAT" data-parsley-trigger="change" required="" placeholder="Masukkan No Plat" autocomplete="off" class="form-control">
+                                        <div class="form-group col-lg-4">
+                                            <label for="">No Reg Baru</label>
+                                            <input id="" type="text" name="noreg_baru" data-parsley-trigger="change" required="" placeholder="Masukkan No Reg Baru" autocomplete="off" class="form-control">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-6">
                                             <label for="">No Rangka</label>
-                                            <input id="" name ="NO_RANGKA" type="text" placeholder="Masukkan No Rangka" required="" class="form-control">
+                                            <input id="" type="text" name="no_rangka" data-parsley-trigger="change" required="" placeholder="Masukkan No Mesin" autocomplete="off" class="form-control">
                                         </div>
-
-
-
-
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-6">
                                             <label for="">No Mesin</label>
-                                            <input id="" name ="NO_MESIN" type="text" placeholder="Masukkan No Mesin" required="" class="form-control">
+                                            <input id="" type="text" name="no_mesin" data-parsley-trigger="change" required="" placeholder="Masukkan No Rangka" autocomplete="off" class="form-control">
                                         </div>
 
-                                        <div class="form-group">
+
+                                        <div class="form-group col-lg-3">
                                             <label for="jenis">Jenis Kendaraan</label>
-                                            <select name="JENIS"  class="form-control form-control-lg" data-placeholder="Pilih JENIS KENDARAAN">
+                                            <select name="jenis"  class="form-control form-control-lg" data-placeholder="Pilih JENIS KENDARAAN">
                     
                                                 <?php foreach($jenis as $jenis){?>
                                                   <option value="<?php echo $jenis->jenis; ?>"><?php echo $jenis->jenis; ?> </option>
@@ -127,9 +117,9 @@
                                         </div>
 
 
-                                        <div class="form-group">
-                                            <label for="type">Type Kendaraan</label>
-                                            <select name="TYPE"  class="form-control form-control-lg" data-placeholder="Pilih TYPE KENDARAAN">
+                                        <div class="form-group col-lg-3">
+                                            <label for="type">Tipe Kendaraan</label>
+                                            <select name="type"  class="form-control form-control-lg" data-placeholder="Pilih TYPE KENDARAAN">
                     
                                                 <?php foreach($type as $type){?>
                                                   <option value="<?php echo $type->type; ?>"><?php echo $type->type; ?>
@@ -140,9 +130,9 @@
 
 
 
-                                        <div class="form-group">
-                                            <label for="merk">Merk Kendaraan</label>
-                                            <select name="MERK"  class="form-control form-control-lg" data-placeholder="Pilih MEREK KENDARAAN">
+                                        <div class="form-group col-lg-3">
+                                            <label for="merk">Merek Kendaraan</label>
+                                            <select name="merek"  class="form-control form-control-lg" data-placeholder="Pilih MEREK KENDARAAN">
                                                 
                                                 <?php 
 
@@ -155,30 +145,72 @@
                                           </select>
                                         </div>
 
-                                       <div class="form-group">
+                                        <div class="form-group col-lg-3">
                                             <label for="silinder">Silinder Kendaraan</label>
                                             <select name="SILINDER"  class="form-control form-control-lg" data-placeholder="Pilih SILINDER KENDARAAN">
                     
                                                 <?php foreach($silinder as $silinders){?>
-                                                  <option value="<?php echo $silinders->silinder; ?>"><?php echo $silinders->silinder; ?> </option>
+                                                  <option value="<?php echo $silinders->silinder; ?>"><?php echo $silinders->silinder; ?> CC</option>
                                        
                                                 <?php } ?>
                                           </select>
                                         </div>
 
-                                         <div class="form-group">
+
+
+                                         <div class="form-group col-lg-2">
                                             <label for="">Tahun</label>
-                                            <input id="" name ="TAHUN" type="text" placeholder="Tahun" required="" class="form-control" id="datepicker" >
+                                            <input id="" name ="tahun" type="text" placeholder="Tahun Kendaraan" required="" class="form-control" id="datepicker" >
                                         </div>
-                                        <div class="form-group">
+
+                                        <div class="form-group col-lg-1">
+                                            <label for="">Kondisi Kendaraan</label>
+                                            <select name="kondisi"  class="form-control form-control-lg" data-placeholder="Pilih Kondisi Kendaraan">
+                                                <option value="B">B</option>
+                                                <option value="RR">RR</option>
+                                                <option value="RB">RB</option>                                      
+                                          </select>
+                                        </div>
+
+                                        <div class="form-group col-lg-12">
+                                            <label for="jabatan">Pemegang</label>
+                                            <select name="pemegang"  class="form-control form-control-lg" data-placeholder="Pilih Jabatan">
+                    
+                                                <?php foreach($jabatan as $jabatan){?>
+                                                  <option value="<?php echo $jabatan->pemegang; ?>"><?php echo $jabatan->pemegang; ?>
+                                       
+                                                <?php } ?>
+                                          </select>
+                                        </div>
+
+                                        <div class="form-group col-lg-12">
                                             <label for="">Foto Kendaraan</label>
-                                        </div>
-                                        <div class="custom-file mb-3">
-                                                <input type="file" class="custom-file-input" id="customFile" name="foto_mobil">
-                                                <label class="custom-file-label" for="customFile">Upload</label>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="preview_gambar" name="foto">
+                                                <label class="custom-file-label" for="customFile" id="label_foto">Upload</label>
+                                            </div>
+
                                         </div>
 
-
+                                        <div class="form-group col-lg-3">
+                                        <div class="card card-figure">
+                                            <!-- .card-figure -->
+                                            <figure class="figure">
+                                                <!-- .figure-img -->
+                                                <div class="figure-attachment">
+                                                    <img src="../assets/images/card-img.jpg" alt="Card image cap" class="img-fluid" id="foto"> </div>
+                                                <!-- /.figure-img -->
+                                                <figcaption class="figure-caption">
+                                                    <ul class="list-inline d-flex text-muted mb-0">
+                                                        <li class="list-inline-item text-truncate mr-auto">Preview </li>
+                                                         
+                                                           
+                                                    </ul>
+                                                </figcaption>
+                                            </figure>
+                                            <!-- /.card-figure -->
+                                        </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0">
                                                 <label class="">
@@ -284,6 +316,37 @@
 
 
 
+    </script>
+
+    <script type="text/javascript">
+       
+         function bacaGambar(input) {
+             if (input.files && input.files[0]) {
+                var reader = new FileReader();
+           
+                reader.onload = function (e) {
+                    $('#foto').attr('src', e.target.result);
+                }
+           
+                reader.readAsDataURL(input.files[0]);
+             }
+          }
+
+          $("#preview_gambar").change(function(){
+                   bacaGambar(this);
+                   
+          });
+
+          $(document).ready(function(){
+
+            $('input[type="file"]').change(function(e){
+                var fileName = e.target.files[0].name;
+                $('#label_foto').html(fileName);
+                // alert('The file "' + fileName +  '" has been selected.');
+            });
+
+        });
+    
     </script>
 </body>
  
