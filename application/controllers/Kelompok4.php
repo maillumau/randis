@@ -173,7 +173,7 @@ class Kelompok4 extends CI_Controller {
             
                             
                                 $this->load->model("common_model");
-                                $this->common_model->data_insert("data_randis",
+                                $this->common_model->data_insert("randis",
                                     array(
                                     "JABATAN" => $JABATAN,
                                     "NO_PLAT" => $NO_PLAT,

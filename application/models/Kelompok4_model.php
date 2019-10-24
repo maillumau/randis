@@ -27,7 +27,7 @@ class Kelompok4_model extends CI_Model{
     public function get_all_randis_filter_by_flag_del(){
         
         $this->db->select();
-        $this->db->from('data_randis');
+        $this->db->from('randis');
         $this->db->where('flag_del',0);
         $this->db->order_by("NO", "desc");
         $q = $this->db->get();
@@ -37,7 +37,7 @@ class Kelompok4_model extends CI_Model{
         public function get_randis_filter_by_flag_del($id){
         
         $this->db->select();
-        $this->db->from('data_randis');
+        $this->db->from('randis');
         $this->db->where('NO',$id);
         $q = $this->db->get();
         return $q->result();
