@@ -100,7 +100,7 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
                         <div class="card">
-                            <h5 class="card-header">Daftar Jenis Kendaraan</h5>
+                            <h5 class="card-header">Daftar Pemegang Kendaraan</h5>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first" id="datatable_randis">
