@@ -6,7 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Form Tambah Data Randis</title>
+    <title>Form Edit Data Randis</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/bootstrap/css/bootstrap.min.css"); ?>"> 
     <link rel="stylesheet" href="<?php echo base_url($this->config->item("theme_admin")."/assets/vendor/fonts/circular-std/style.css"); ?>"> 
@@ -47,14 +47,14 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Form Tambah Data Randis </h2>
+                            <h2 class="pageheader-title">Form Edit Data Randis </h2>
                             <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Forms</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Form Tambah Data Randis</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Form Edit Data Randis</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -72,14 +72,14 @@
                         <!-- ============================================================== -->
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Tambah Data Randis</h5>
+                                <h5 class="card-header">Edit Data Randis</h5>
                                 <div class="card-body">
                                     <?php if (@$sukses) { ?>
                                         <div class="card-body border-top">
                                             
                                             <div class="alert alert-primary" role="alert">
                                                 <h4 class="alert-heading">Selamat !</h4>
-                                                <p>Anda berhasil menambahkan data.</p>
+                                                <p>Anda berhasil  mengedit data.</p>
                                                 <hr>
                                                 <p class="mb-0"></p>
                                             </div>
@@ -89,28 +89,47 @@
                                         <div class="form-group col-lg-4">
 
                                             <label for="">No Reg Lama</label>
-                                            <input id="" type="text" name="noreg_lama" data-parsley-trigger="change" required="" placeholder="Masukkan No Reg Lama" autocomplete="off" class="form-control">
+                                            <input id="" type="text" name="noreg_lama" data-parsley-trigger="change" required="" placeholder="Masukkan No Reg Lama" autocomplete="off" class="form-control"
+                                            value="<?php echo $kuatalmat->noreg_lama; ?>">
                                         </div>
                                         <div class="form-group col-lg-4">
                                             <label for="">No Reg Baru</label>
-                                            <input id="" type="text" name="noreg_baru" data-parsley-trigger="change" required="" placeholder="Masukkan No Reg Baru" autocomplete="off" class="form-control">
+                                            <input id="" type="text" name="noreg_baru" data-parsley-trigger="change" required="" placeholder="Masukkan No Reg Baru" autocomplete="off" class="form-control"
+                                            value="<?php echo $kuatalmat->noreg_baru; ?>">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="">No Rangka</label>
-                                            <input id="" type="text" name="no_rangka" data-parsley-trigger="change" required="" placeholder="Masukkan No Mesin" autocomplete="off" class="form-control">
+                                            <input id="" type="text" name="no_rangka" data-parsley-trigger="change" required="" placeholder="Masukkan No Mesin" autocomplete="off" class="form-control"
+                                            value="<?php echo $kuatalmat->no_rangka; ?>">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label for="">No Mesin</label>
-                                            <input id="" type="text" name="no_mesin" data-parsley-trigger="change" required="" placeholder="Masukkan No Rangka" autocomplete="off" class="form-control">
+                                            <input id="" type="text" name="no_mesin" data-parsley-trigger="change" required="" placeholder="Masukkan No Rangka" autocomplete="off" class="form-control"
+                                            value="<?php echo $kuatalmat->no_mesin; ?>">
                                         </div>
 
 
                                         <div class="form-group col-lg-3">
                                             <label for="jenis">Jenis Kendaraan</label>
-                                            <select name="jenis"  class="form-control form-control-lg" data-placeholder="Pilih JENIS KENDARAAN">
+                                            <select name="jenis"  class="form-control form-control-lg" data-placeholder="Pilih JENIS KENDARAAN" value="">
+
                     
-                                                <?php foreach($jenis as $jenis){?>
-                                                  <option value="<?php echo $jenis->jenis; ?>"><?php echo $jenis->jenis; ?> </option>
+                                                <?php foreach($jenis as $jenis){
+
+                                                    if ($kuatalmat->jenis == $jenis->jenis) { ?>
+                                                    
+                                                    <option value="<?php echo $kuatalmat->jenis; ?>" selected><?php echo $kuatalmat->jenis; ?> </option>
+                                                <?php 
+                                                     } else { ?>
+
+                                                    <option value="<?php echo $jenis->jenis; ?>"><?php echo $jenis->jenis; ?> </option>
+
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
                                        
                                                 <?php } ?>
                                           </select>
@@ -120,11 +139,29 @@
                                         <div class="form-group col-lg-3">
                                             <label for="type">Tipe Kendaraan</label>
                                             <select name="type"  class="form-control form-control-lg" data-placeholder="Pilih TYPE KENDARAAN">
-                    
-                                                <?php foreach($type as $type){?>
-                                                  <option value="<?php echo $type->type; ?>"><?php echo $type->type; ?>
+
+
+
+                                                <?php foreach($type as $type){
+
+                                                    if ($kuatalmat->type == $type->type) { ?>
+                                                    
+                                                    <option value="<?php echo $kuatalmat->type; ?>" selected><?php echo $kuatalmat->type; ?> </option>
+                                                <?php 
+                                                     } else { ?>
+
+                                                    <option value="<?php echo $type->type; ?>"><?php echo $type->type; ?> </option>
+
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
                                        
                                                 <?php } ?>
+
+
                                           </select>
                                         </div>
 
@@ -133,15 +170,28 @@
                                         <div class="form-group col-lg-3">
                                             <label for="merk">Merek Kendaraan</label>
                                             <select name="merek"  class="form-control form-control-lg" data-placeholder="Pilih MEREK KENDARAAN">
-                                                
+
+
+
+                                                <?php foreach($merk as $merek){
+
+                                                    if ($kuatalmat->merek == $merek->merek) { ?>
+                                                    
+                                                    <option value="<?php echo $kuatalmat->merek; ?>" selected><?php echo $kuatalmat->merek; ?> </option>
                                                 <?php 
+                                                     } else { ?>
 
-                                                foreach($merk as $merek){?>
+                                                    <option value="<?php echo $merek->merek; ?>"><?php echo $merek->merek; ?> </option>
 
-                                                  <option value="<?php echo $merek->merek; ?>"><?php echo $merek->merek; ?></option>
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
                                        
-                                                <?php } 
-                                                ?>
+                                                <?php } ?>
+
                                           </select>
                                         </div>
 
@@ -156,12 +206,32 @@
 
                                         <div class="form-group col-lg-3">
                                             <label for="silinder">Silinder Kendaraan</label>
-                                            <select name="silinder"  class="form-control form-control-lg" data-placeholder="Pilih SILINDER KENDARAAN">
-                    
-                                                <?php foreach($silinder as $silinders){?>
-                                                  <option value="<?php echo $silinders->silinder; ?>"><?php echo $silinders->silinder; ?> CC</option>
+                                            <select name="kubikasi"  class="form-control form-control-lg" data-placeholder="Pilih SILINDER KENDARAAN">
+
+
+                                                <?php foreach($silinder as $silinders){
+
+                                                    if ($kuatalmat->silinder == $silinders->silinder) { ?>
+                                                    
+                                                    <option value="<?php echo $kuatalmat->silinder; ?>" selected><?php echo $kuatalmat->silinder; ?> CC</option>
+                                                <?php 
+                                                     } else { ?>
+
+                                                    <option value="<?php echo $silinders->silinder; ?>"><?php echo $silinders->silinder; ?> CC</option>
+
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
                                        
                                                 <?php } ?>
+
+
+
+
+
                                           </select>
                                         </div>
 
@@ -169,33 +239,69 @@
 
                                          <div class="form-group col-lg-2">
                                             <label for="">Tahun</label>
-                                            <input id="" name ="tahun" type="text" placeholder="Tahun Kendaraan" required="" class="form-control" id="datepicker" >
+                                            <input id="" name ="tahun" type="text" placeholder="Tahun Kendaraan" required="" class="form-control" id="datepicker" value="<?php echo $kuatalmat->tahun?>">
                                         </div>
 
                                         <div class="form-group col-lg-3">
                                             <label for="">Kondisi Kendaraan</label>
                                             <select name="kondisi"  class="form-control form-control-lg" data-placeholder="Pilih Kondisi Kendaraan">
-                                                <option value="B">B</option>
-                                                <option value="RR">RR</option>
-                                                <option value="RB">RB</option>                                      
+                                                <?php if($kuatalmat->kondisi == 'B'){ ?>
+                                                    <option value="B" selected="true">B</option>
+                                                    <option value="RR">RR</option>
+                                                    <option value="RB">RB</option>    
+                                                <?php } elseif($kuatalmat->kondisi == 'RR'){ ?>
+                                                    <option value="B">B</option>
+                                                    <option value="RR" selected="true">RR</option>
+                                                    <option value="RB">RB</option>  
+                                                <?php } elseif($kuatalmat->kondisi == 'RB'){ ?>
+                                                    <option value="B">B</option>
+                                                    <option value="RR">RR</option>
+                                                    <option value="RB" selected="true">RB</option>     
+                                                <?php } else {?>
+                                                    <option value="B">B</option>
+                                                    <option value="RR">RR</option>
+                                                    <option value="RB">RB</option>  
+                                                <?php } ?>
+                                                                                
                                           </select>
                                         </div>
 
                                         <div class="form-group col-lg-12">
                                             <label for="jabatan">Pemegang</label>
                                             <select name="pemegang"  class="form-control form-control-lg" data-placeholder="Pilih Jabatan">
-                    
-                                                <?php foreach($jabatan as $jabatan){?>
-                                                  <option value="<?php echo $jabatan->pemegang; ?>"><?php echo $jabatan->pemegang; ?>
+
+
+
+
+                                                <?php foreach($jabatan as $jabatan){
+
+                                                    if ($kuatalmat->pemegang == $jabatan->pemegang) { ?>
+                                                    
+                                                    <option value="<?php echo $kuatalmat->pemegang; ?>" selected><?php echo $kuatalmat->pemegang; ?></option>
+                                                <?php 
+                                                     } else { ?>
+
+                                                    <option value="<?php echo $jabatan->pemegang; ?>"><?php echo $jabatan->pemegang; ?></option>
+
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
                                        
                                                 <?php } ?>
+
+
+                    
                                           </select>
                                         </div>
 
                                         <div class="form-group col-lg-12">
                                             <label for="">Foto Kendaraan</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="preview_gambar" name="foto">
+                                                <input type="file" class="custom-file-input" id="preview_gambar" name="foto" value="<?php echo base_url().'uploads/foto_mobil/'.$kuatalmat->foto;?>">
+                                                <input type="hidden" name="foto" value="<?php echo $kuatalmat->foto; ?>">
                                                 <label class="custom-file-label" for="customFile" id="label_foto">Upload</label>
                                             </div>
 
@@ -207,7 +313,14 @@
                                             <figure class="figure">
                                                 <!-- .figure-img -->
                                                 <div class="figure-attachment">
-                                                    <img src="../assets/images/card-img.jpg" alt="Card image cap" class="img-fluid" id="foto"> </div>
+                                                    <?php if ($kuatalmat->foto == null){ ?>
+                                                        <img src="<?php echo base_url().'uploads/default.png';?>" alt="Card image cap" class="img-fluid" id="foto">
+
+                                                    <?php } else { ?>
+                                                    <img src="<?php echo base_url().'uploads/foto_mobil/'.$kuatalmat->foto;?>" alt="Card image cap" class="img-fluid" id="foto"> 
+                                                    <?php }?>
+
+                                                </div>
                                                 <!-- /.figure-img -->
                                                 <figcaption class="figure-caption">
                                                     <ul class="list-inline d-flex text-muted mb-0">
@@ -239,7 +352,7 @@
                                             
                                             <div class="alert alert-primary" role="alert">
                                                 <h4 class="alert-heading">Selamat !</h4>
-                                                <p>Anda berhasil menambahkan data.</p>
+                                                <p>Anda berhasil mengedit data.</p>
                                                 <hr>
                                                 <p class="mb-0"></p>
                                             </div>

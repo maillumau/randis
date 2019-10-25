@@ -34,6 +34,17 @@ class Kelompok3_model extends CI_Model{
         return $q->result();
     }
 
+
+    public function get_all_randis_filter_by_flag_del_order_by_time(){
+        
+        $this->db->select();
+        $this->db->from('kuatalmat');
+        $this->db->where('flag_del',0);
+        $this->db->order_by("tgl_edit", "desc");
+        $q = $this->db->get();
+        return $q->result();
+    }
+
         public function get_randis_filter_by_flag_del($id){
         
         $this->db->select();
@@ -46,6 +57,14 @@ class Kelompok3_model extends CI_Model{
     public function get_type_by_code($code){
          $q = $this->db->query("select * from typeran where  kode = '".$code."' limit 1");
         return $q->row();
+    }
+
+
+    public function get_kuatalmat_by($id){
+
+        $q = $this->db->query("select * from kuatalmat where id = '".$id."'");
+        return $q->row();
+
     }
 
 }

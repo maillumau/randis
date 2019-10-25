@@ -168,6 +168,7 @@ class Kelompok3 extends CI_Controller {
                                 $tahun = $this->input->post("tahun");
                                 $kondisi = $this->input->post("kondisi");
                                 $pemegang = $this->input->post("pemegang");
+                                $bahan_bakar = $this->input->post("bahan_bakar");
                                 $foto = $noreg_baru.$merek.'.'.$ext;
                             
  
@@ -187,6 +188,8 @@ class Kelompok3 extends CI_Controller {
                                     "tahun" => $tahun,
                                     "pemegang" => $pemegang,
                                     "foto" => $foto,
+                                    "bahan_bakar" => $bahan_bakar,
+                                    "tgl_buat"=>date("Y-m-d H:i:sa"),
                                     'flag_del' => 0
                                     ));
 
@@ -212,10 +215,27 @@ class Kelompok3 extends CI_Controller {
             $this->load->model("kelompok3_model");
             $data["data_randis"] =   $this->kelompok3_model->get_all_randis_filter_by_flag_del();
 
+
+
             
         
 
             $this->load->view("kelompok3/list_randis",$data);
+          
+        }
+
+   }
+
+
+  public function list_edit_randis(){
+
+            if(_is_user_login($this)){
+            $data = array();
+            $this->load->model("kelompok3_model");
+            $data["data_randis"] =   $this->kelompok3_model->get_all_randis_filter_by_flag_del_order_by_time();
+
+            
+            $this->load->view("kelompok3/list_edit_randis",$data);
           
         }
 
@@ -430,6 +450,122 @@ class Kelompok3 extends CI_Controller {
 
         $this->db->query("update pemegangran set flag_del = 1 where id = '".$id."'");
         redirect("kelompok3/add_pemegang");
+
+    }
+
+
+    public function edit_randis($id){
+
+        if(_is_user_login($this)){
+            $data = array();
+
+            $this->load->model("kelompok3_model");
+            $data["merk"] = $this->kelompok3_model->get_merek_randis();
+            $data["silinder"] = $this->kelompok3_model->get_silinder_randis();
+            $data["type"] = $this->kelompok3_model->get_type_kendaraan();
+            $data["jabatan"] = $this->kelompok3_model->get_jabatan();
+            $data["jenis"] = $this->kelompok3_model->get_jenis_randis();
+
+            $data['kuatalmat'] = $this->kelompok3_model->get_kuatalmat_by($id);
+
+
+            if($_POST){
+
+//var_dump($_POST); die();
+
+
+                                if (empty($_FILES['foto']['size'])) {
+
+                                    $noreg_lama = $this->input->post("noreg_lama");
+                                    $noreg_baru = $this->input->post("noreg_baru");
+                                    $no_rangka = $this->input->post("no_rangka");
+                                    $no_mesin = $this->input->post("no_mesin");
+                                    $jenis = $this->input->post("jenis");
+                                    $type = $this->input->post("type");
+                                    $merek = $this->input->post("merek");
+                                    $kubikasi = $this->input->post("kubikasi");
+                                    $tahun = $this->input->post("tahun");
+                                    $kondisi = $this->input->post("kondisi");
+                                    $pemegang = $this->input->post("pemegang");
+                                    $bahan_bakar = $this->input->post("bahan_bakar");
+                                    $foto =  $this->input->post("foto");
+
+                                } else {
+
+                                    $file_name="";
+                                    $config['upload_path'] = './uploads/foto_mobil/';
+                                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                                    $new_name = $this->input->post("noreg_baru").$this->input->post("merek");
+                                    $config['file_name'] = $new_name;
+                                    $this->load->library('upload', $config);
+
+                                    if ( ! $this->upload->do_upload('foto')){
+                                        $error = array('error' => $this->upload->display_errors());
+                        
+                                    }else{
+                                        $this->upload->data();
+
+       
+                                        $path = $_FILES['foto']['name'];
+                                        @$ext = pathinfo($path, PATHINFO_EXTENSION);
+                                    
+                                    } 
+
+                                    $noreg_lama = $this->input->post("noreg_lama");
+                                    $noreg_baru = $this->input->post("noreg_baru");
+                                    $no_rangka = $this->input->post("no_rangka");
+                                    $no_mesin = $this->input->post("no_mesin");
+                                    $jenis = $this->input->post("jenis");
+                                    $type = $this->input->post("type");
+                                    $merek = $this->input->post("merek");
+                                    $kubikasi = $this->input->post("kubikasi");
+                                    $tahun = $this->input->post("tahun");
+                                    $kondisi = $this->input->post("kondisi");
+                                    $pemegang = $this->input->post("pemegang");
+                                    $bahan_bakar = $this->input->post("bahan_bakar");
+                                    $foto = $noreg_baru.$merek.'.'.@$ext;
+                                }
+                                
+                            
+ 
+            
+                            
+                                $this->load->model("common_model");
+                                $update_array = array(
+                                    "noreg_lama" => $noreg_lama,
+                                    "noreg_baru" => $noreg_baru,
+                                    "no_rangka" => $no_rangka,
+                                    "no_mesin" => $no_mesin,
+                                    "jenis" => $jenis,
+                                    "type" => $type,
+                                    "merek" => $merek,
+                                    "kubikasi" => $kubikasi,
+                                    "tahun" => $tahun,
+                                    "pemegang" => $pemegang,
+                                    "foto" => $foto,
+                                    "kondisi"=>$kondisi,
+                                    "bahan_bakar" => $bahan_bakar,
+                                    "tgl_edit"=>date("Y-m-d H:i:sa")
+                                    );
+
+                                $this->common_model->data_update("kuatalmat",$update_array,array("id"=>$id));
+
+
+                        $data["sukses"] =  "data berhasil disimpan";
+                        redirect("kelompok3/list_edit_randis");
+
+
+
+                           
+
+
+            }
+
+
+           
+            $this->load->view("kelompok3/edit_randis",$data);
+          
+        }
 
     }
 }
