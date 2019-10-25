@@ -16,7 +16,7 @@ class Kelompok3_model extends CI_Model{
         return $q->result();
     }
     public function get_jabatan(){
-        $q = $this->db->query("select * from pemegangran");
+        $q = $this->db->query("select * from pemegangran where flag_del='0'");
         return $q->result();
     }
     public function get_jenis_randis(){

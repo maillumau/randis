@@ -367,6 +367,41 @@ class Kelompok3 extends CI_Controller {
         
     }
 
+
+    public function add_pemegang(){
+
+        if(_is_user_login($this)){
+
+
+            $data = array();
+
+
+           $this->load->model("kelompok3_model");
+           $data = array();
+
+           if($_POST){
+
+                    $pemegang = $this->input->post("pemegang");
+                    $kode = $this->input->post("kode_pemegang");
+
+                    $this->load->model("common_model");
+                    $this->common_model->data_insert("pemegangran",
+                    array(
+                                    "pemegang" => $pemegang,
+                                    "kode_pemegang" => $kode,
+                                    'flag_del' => 0
+                    ));
+                    $data["sukses"] =  "data berhasil disimpan";
+           }
+           $data['pemegang_kendaraan'] = $this->kelompok3_model->get_jabatan();
+
+
+           $this->load->view("kelompok3/add_pemegang",$data);
+
+        }
+        
+    }
+
     public function delete_jenis($id){
 
         $this->db->query("update jenisran set flag_del = 1 where id = '".$id."'");
@@ -387,6 +422,14 @@ class Kelompok3 extends CI_Controller {
 
         $this->db->query("update merekran set flag_del = 1 where id = '".$id."'");
         redirect("kelompok3/add_merk");
+
+    }
+
+
+    public function delete_pemegang($id){
+
+        $this->db->query("update pemegangran set flag_del = 1 where id = '".$id."'");
+        redirect("kelompok3/add_pemegang");
 
     }
 }
