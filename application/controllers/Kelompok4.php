@@ -137,8 +137,6 @@ class Kelompok4 extends CI_Controller {
                         $config['allowed_types'] = 'gif|jpg|png|jpeg';
                         $new_name = $this->input->post("NO_PLAT").$this->input->post("MERK");
                         $config['file_name'] = $new_name;
-                        $config['width']= 310;
-                        $config['height']= 136;
                         $this->load->library('upload', $config);
                         $this->upload->overwrite = true;
 
@@ -156,8 +154,8 @@ class Kelompok4 extends CI_Controller {
                                         $config['image_library'] = 'gd2';
                                         $config['source_image'] = $image_data['full_path']; //get original image
                                         $config['maintain_ratio'] = TRUE;
-                                        $config['width'] = 310;
-                                        $config['height'] = 136;
+                                        $config['width'] = 650;
+                                        $config['height'] = 365;
                                         $this->load->library('image_lib', $config);
                                         if (!$this->image_lib->resize()) {
                                             $this->handle_error($this->image_lib->display_errors());
@@ -337,8 +335,8 @@ class Kelompok4 extends CI_Controller {
                                         $config['image_library'] = 'gd2';
                                         $config['source_image'] = $image_data['full_path']; //get original image
                                         $config['maintain_ratio'] = TRUE;
-                                        $config['width'] = 310;
-                                        $config['height'] = 136;
+                                        $config['width'] = 650;
+                                        $config['height'] = 365;
                                         $this->load->library('image_lib', $config);
                                         if (!$this->image_lib->resize()) {
                                             $this->handle_error($this->image_lib->display_errors());
