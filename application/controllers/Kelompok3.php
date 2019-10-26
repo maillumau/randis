@@ -272,7 +272,7 @@ class Kelompok3 extends CI_Controller {
             $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
             $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
 
-            $data = array( 'data'=>array('sukses',$no_plat));
+            $data = array( 'data'=>array('sukses',$no_plat,'kelompok3'));
             echo json_encode($data);
             
         }
