@@ -114,7 +114,7 @@
                                                                 $img = $this->config->item('base_url').'uploads/foto_mobil/'.$randis->GAMBAR; 
                                                             }  
                                                      ?>
-                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 200px; width: 200px;" >
+                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 275px; width: 404.77px;" >
                               
                                                 </td>
                                                 <td>
