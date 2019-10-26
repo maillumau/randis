@@ -305,7 +305,7 @@
 
                             $.ajax({
                                     type: "POST",
-                                    url: base + "kelompok4/cetak_QR",
+                                    url: base + "kelompok3/cetak_QR",
                                     data:{  "no_plat": no_plat},
                                     dataType: "html",
                                     cache: false,
