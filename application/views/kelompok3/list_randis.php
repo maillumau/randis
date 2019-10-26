@@ -295,7 +295,7 @@
 
                          $('#datatable_randis').on('click', 'tbody tr .kartu', function () {
                             var base = '<?=base_url()?>';
-                            var barcode_path = base + "uploads/foto_qrcode/";
+                            var barcode_path = base + "uploads/foto_qrcode_kel3/";
 
                             var no_plat = $(this).closest('tr').find('.no_plat').text();
                             var merek = $(this).closest('tr').find('.merek').text();
