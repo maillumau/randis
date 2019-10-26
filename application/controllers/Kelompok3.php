@@ -133,7 +133,7 @@ class Kelompok3 extends CI_Controller {
             if($_POST){
 
                         $file_name="";
-                        $config['upload_path'] = './uploads/foto_mobil/';
+                        $config['upload_path'] = './uploads/foto_mobil_kel3/';
                         $config['allowed_types'] = 'gif|jpg|png|jpeg';
                         $new_name = $this->input->post("noreg_baru").$this->input->post("merek");
                         $config['file_name'] = $new_name;
@@ -169,7 +169,7 @@ class Kelompok3 extends CI_Controller {
                                 $kondisi = $this->input->post("kondisi");
                                 $pemegang = $this->input->post("pemegang");
                                 $bahan_bakar = $this->input->post("bahan_bakar");
-                                $foto = $noreg_baru.$merek.'kel3.'.$ext;
+                                $foto = $noreg_baru.$merek.'.'.$ext;
                             
  
             
@@ -493,7 +493,7 @@ class Kelompok3 extends CI_Controller {
                                 } else {
 
                                     $file_name="";
-                                    $config['upload_path'] = './uploads/foto_mobil/';
+                                    $config['upload_path'] = './uploads/foto_mobil_kel3/';
                                     $config['allowed_types'] = 'gif|jpg|png|jpeg';
                                     $new_name = $this->input->post("noreg_baru").$this->input->post("merek");
                                     $config['file_name'] = $new_name;
@@ -523,7 +523,7 @@ class Kelompok3 extends CI_Controller {
                                     $kondisi = $this->input->post("kondisi");
                                     $pemegang = $this->input->post("pemegang");
                                     $bahan_bakar = $this->input->post("bahan_bakar");
-                                    $foto = $noreg_baru.$merek.'kel3.'.@$ext;
+                                    $foto = $noreg_baru.$merek.'.'.@$ext;
                                 }
                                 
                             

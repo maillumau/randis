@@ -300,7 +300,7 @@
                                         <div class="form-group col-lg-12">
                                             <label for="">Foto Kendaraan</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="preview_gambar" name="foto" value="<?php echo base_url().'uploads/foto_mobil/'.$kuatalmat->foto;?>">
+                                                <input type="file" class="custom-file-input" id="preview_gambar" name="foto" value="<?php echo base_url().'uploads/foto_mobil_kel3/'.$kuatalmat->foto;?>">
                                                 <input type="hidden" name="foto" value="<?php echo $kuatalmat->foto; ?>">
                                                 <label class="custom-file-label" for="customFile" id="label_foto">Upload</label>
                                             </div>
@@ -317,7 +317,7 @@
                                                         <img src="<?php echo base_url().'uploads/default.png';?>" alt="Card image cap" class="img-fluid" id="foto">
 
                                                     <?php } else { ?>
-                                                    <img src="<?php echo base_url().'uploads/foto_mobil/'.$kuatalmat->foto;?>" alt="Card image cap" class="img-fluid" id="foto"> 
+                                                    <img src="<?php echo base_url().'uploads/foto_mobil_kel3/'.$kuatalmat->foto;?>" alt="Card image cap" class="img-fluid" id="foto"> 
                                                     <?php }?>
 
                                                 </div>
