@@ -169,7 +169,7 @@ class Kelompok3 extends CI_Controller {
                                 $kondisi = $this->input->post("kondisi");
                                 $pemegang = $this->input->post("pemegang");
                                 $bahan_bakar = $this->input->post("bahan_bakar");
-                                $foto = $noreg_baru.$merek.'.'.$ext;
+                                $foto = $noreg_baru.$merek.'kel3.'.$ext;
                             
  
             
@@ -523,7 +523,7 @@ class Kelompok3 extends CI_Controller {
                                     $kondisi = $this->input->post("kondisi");
                                     $pemegang = $this->input->post("pemegang");
                                     $bahan_bakar = $this->input->post("bahan_bakar");
-                                    $foto = $noreg_baru.$merek.'.'.@$ext;
+                                    $foto = $noreg_baru.$merek.'kel3.'.@$ext;
                                 }
                                 
                             
