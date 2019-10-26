@@ -118,7 +118,7 @@
                                                      <?php
                                                             $img = base_url("uploads/default.png");
                                                             if($randis->foto != ""){
-                                                                $img = $this->config->item('base_url').'uploads/foto_mobil/'.$randis->foto; 
+                                                                $img = $this->config->item('base_url').'uploads/foto_mobil_kel3/'.$randis->foto; 
                                                             }  
                                                      ?>
                                                         <img src="<?php echo $img; ?>" class="img-circle" style="height: 200px; width: 200px;" >
