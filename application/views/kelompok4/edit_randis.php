@@ -47,14 +47,14 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Form Tambah Data Randis </h2>
+                            <h2 class="pageheader-title">Form Tambah Edit Randis </h2>
                             <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Forms</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Form Tambah Data Randis</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Form Edit Data Randis</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -72,14 +72,14 @@
                         <!-- ============================================================== -->
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Tambah Data Randis</h5>
+                                <h5 class="card-header">Edit Data Randis</h5>
                                 <div class="card-body">
                                     <?php if (@$sukses) { ?>
                                         <div class="card-body border-top">
                                             
                                             <div class="alert alert-primary" role="alert">
                                                 <h4 class="alert-heading">Selamat !</h4>
-                                                <p>Anda berhasil menambahkan data.</p>
+                                                <p>Anda berhasil mengedit data.</p>
                                                 <hr>
                                                 <p class="mb-0"></p>
                                             </div>
@@ -87,7 +87,7 @@
                                    <?php } ?>
                                     <form action="#" id="basicform" data-parsley-validate="" method="post" enctype="multipart/form-data">
 
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-12">
                                             <label for="jabatan">Jabatan</label>
                                             <select name="JABATAN"  class="form-control form-control-lg" data-placeholder="Pilih Jabatan">
                     
@@ -97,42 +97,70 @@
                                                 <?php } ?>
                                           </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-12">
 
                                             <label for="">No Plat</label>
-                                            <input id="" type="text" name="NO_PLAT" data-parsley-trigger="change" required="" placeholder="Masukkan No Plat" autocomplete="off" class="form-control">
+                                            <input id="" type="text" name="NO_PLAT" data-parsley-trigger="change" required="" placeholder="Masukkan No Plat" autocomplete="off" class="form-control" 
+                                            value="<?php echo $randis->NO_PLAT;?>">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-12">
                                             <label for="">No Rangka</label>
-                                            <input id="" name ="NO_RANGKA" type="text" placeholder="Masukkan No Rangka" required="" class="form-control">
+                                            <input id="" name ="NO_RANGKA" type="text" placeholder="Masukkan No Rangka" required="" class="form-control"
+                                             value="<?php echo $randis->NO_RANGKA;?>">
                                         </div>
-
-
-
-
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-12">
                                             <label for="">No Mesin</label>
-                                            <input id="" name ="NO_MESIN" type="text" placeholder="Masukkan No Mesin" required="" class="form-control">
+                                            <input id="" name ="NO_MESIN" type="text" placeholder="Masukkan No Mesin" required="" class="form-control" value="<?php echo $randis->NO_MESIN;?>">
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-12">
                                             <label for="jenis">Jenis Kendaraan</label>
                                             <select name="JENIS"  class="form-control form-control-lg" data-placeholder="Pilih JENIS KENDARAAN">
-                    
-                                                <?php foreach($jenis as $jenis){?>
-                                                  <option value="<?php echo $jenis->jenis; ?>"><?php echo $jenis->jenis; ?> </option>
+
+
+                                                <?php foreach($jenis as $jenis){
+
+                                                    if ($randis->JENIS == $jenis->jenis) { ?>
+                                                    
+                                                    <option value="<?php echo $randis->JENIS; ?>" selected><?php echo $randis->JENIS; ?> </option>
+                                                <?php 
+                                                     } else { ?>
+
+                                                    <option value="<?php echo $jenis->jenis; ?>"><?php echo $jenis->jenis; ?> </option>
+
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
                                        
                                                 <?php } ?>
                                           </select>
                                         </div>
 
 
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-12">
                                             <label for="type">Type Kendaraan</label>
                                             <select name="TYPE"  class="form-control form-control-lg" data-placeholder="Pilih TYPE KENDARAAN">
                     
-                                                <?php foreach($type as $type){?>
-                                                  <option value="<?php echo $type->type; ?>"><?php echo $type->type; ?>
+
+                                                <?php foreach($type as $type){
+
+                                                    if ($randis->TYPE == $type->type) { ?>
+                                                    
+                                                    <option value="<?php echo $randis->TYPE; ?>" selected><?php echo $randis->TYPE; ?> </option>
+                                                <?php 
+                                                     } else { ?>
+
+                                                    <option value="<?php echo $type->type; ?>"><?php echo $type->type; ?> </option>
+
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
                                        
                                                 <?php } ?>
                                           </select>
@@ -140,51 +168,89 @@
 
 
 
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-12">
                                             <label for="merk">Merk Kendaraan</label>
                                             <select name="MERK"  class="form-control form-control-lg" data-placeholder="Pilih MEREK KENDARAAN">
                                                 
+
+
+
+                                                <?php foreach($merk as $merek){
+
+                                                    if ($randis->MERK == $merek->merek) { ?>
+                                                    
+                                                    <option value="<?php echo $randis->MERK; ?>" selected><?php echo $randis->MERK; ?> </option>
                                                 <?php 
+                                                     } else { ?>
 
-                                                foreach($merk as $merek){?>
+                                                    <option value="<?php echo $merek->merek; ?>"><?php echo $merek->merek; ?> </option>
 
-                                                  <option value="<?php echo $merek->merek; ?>"><?php echo $merek->merek; ?></option>
-                                       
-                                                <?php } 
-                                                ?>
-                                          </select>
-                                        </div>
+                                                 <?php 
 
-                                       <div class="form-group">
-                                            <label for="silinder">Silinder Kendaraan</label>
-                                            <select name="SILINDER"  class="form-control form-control-lg" data-placeholder="Pilih SILINDER KENDARAAN">
-                    
-                                                <?php foreach($silinder as $silinders){?>
-                                                  <option value="<?php echo $silinders->silinder; ?>"><?php echo $silinders->silinder; ?> </option>
+                                                     }
+
+                                                  ?>
+
                                        
                                                 <?php } ?>
                                           </select>
                                         </div>
 
-                                         <div class="form-group">
+                                       <div class="form-group col-lg-12">
+                                            <label for="silinder">Silinder Kendaraan</label>
+                                            <select name="SILINDER"  class="form-control form-control-lg" data-placeholder="Pilih SILINDER KENDARAAN">
+                    
+                                                <?php foreach($silinder as $silinders){
+
+                                                    if ($randis->SILINDER == $silinders->silinder) { ?>
+                                                    
+                                                    <option value="<?php echo $randis->SILINDER; ?>" selected><?php echo $randis->SILINDER; ?> CC</option>
+                                                <?php 
+                                                     } else { ?>
+
+                                                    <option value="<?php echo $silinders->silinder; ?>"><?php echo $silinders->silinder; ?> CC</option>
+
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
+                                       
+                                                <?php } ?>
+                                          </select>
+                                        </div>
+
+                                         <div class="form-group col-lg-12">
                                             <label for="">Tahun</label>
-                                            <input id="" name ="TAHUN" type="text" placeholder="Tahun" required="" class="form-control" id="datepicker" >
+                                            <input id="" name ="TAHUN" type="text" placeholder="Tahun" required="" class="form-control" id="datepicker" value="<?php echo $randis->TAHUN;?>">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-lg-12">
                                             <label for="">Foto Kendaraan</label>
-                                        </div>
-                                        <div class="custom-file mb-3">
-                                                <input type="file" class="custom-file-input" id="preview_gambar" name="foto_mobil">
-                                                <label class="custom-file-label" for="customFile"  id="label_foto">Upload</label>
+                                        
+                                            <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="preview_gambar" name="foto_mobil" value="<?php echo base_url().'uploads/foto_mobil/'.$randis->GAMBAR;?>">
+                                                    <input type="hidden" name="foto_mobil" value="<?php echo $randis->GAMBAR; ?>">
+                                                    <label class="custom-file-label" for="customFile" id="label_foto">Upload</label>
+                                            </div>
+
                                         </div>
 
                                         <div class="form-group col-lg-3">
                                         <div class="card card-figure">
                                             <!-- .card-figure -->
+
                                             <figure class="figure">
                                                 <!-- .figure-img -->
                                                 <div class="figure-attachment">
-                                                    <img src="../assets/images/card-img.jpg" alt="Card image cap" class="img-fluid" id="foto"> </div>
+                                                    <?php if ($randis->GAMBAR == null){ ?>
+                                                        <img src="<?php echo base_url().'uploads/default.png';?>" alt="Card image cap" class="img-fluid" id="foto">
+
+                                                    <?php } else { ?>
+                                                    <img src="<?php echo base_url().'uploads/foto_mobil/'.$randis->GAMBAR;?>" alt="Card image cap" class="img-fluid" id="foto"> 
+                                                    <?php }?>
+
+                                                </div>
                                                 <!-- /.figure-img -->
                                                 <figcaption class="figure-caption">
                                                     <ul class="list-inline d-flex text-muted mb-0">
@@ -208,7 +274,6 @@
                                             <div class="col-sm-6 pl-0">
                                                 <p class="text-right">
                                                     <button type="submit" class="btn btn-space btn-primary">Submit</button>
-                                                    <button class="btn btn-space btn-secondary">Cancel</button>
                                                 </p>
                                             </div>
                                         </div>
@@ -218,7 +283,7 @@
                                             
                                             <div class="alert alert-primary" role="alert">
                                                 <h4 class="alert-heading">Selamat !</h4>
-                                                <p>Anda berhasil menambahkan data.</p>
+                                                <p>Anda berhasil mengedit data.</p>
                                                 <hr>
                                                 <p class="mb-0"></p>
                                             </div>

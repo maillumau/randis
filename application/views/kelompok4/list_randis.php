@@ -131,7 +131,7 @@
                                                          <i class="fa fa-trash"></i></a>
                                                     </button>
                                                     <button>
-                                                        <a href="<?php echo site_url("kelompok4/edit/".$randis->NO); ?>" onclick="return confirm('Yakin di ubah?')" class="" style="color:#FF0000;"> 
+                                                        <a href="<?php echo site_url("kelompok4/edit_randis/".$randis->NO); ?>" onclick="return confirm('Yakin di ubah?')" class="" style="color:#FF0000;"> 
                                                          <i class="fas fa-edit"></i></a>
                                                     </button>
 

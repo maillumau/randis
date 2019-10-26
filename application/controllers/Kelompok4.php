@@ -269,6 +269,131 @@ class Kelompok4 extends CI_Controller {
            
     }
 
+
+    public function edit_randis($id){
+
+        if(_is_user_login($this)){
+            $data = array();
+
+            $this->load->model("kelompok4_model");
+            $data["merk"] = $this->kelompok4_model->get_merek_randis();
+            $data["silinder"] = $this->kelompok4_model->get_silinder_randis();
+            $data["type"] = $this->kelompok4_model->get_type_kendaraan();
+            $data["jabatan"] = $this->kelompok4_model->get_jabatan();
+            $data["jenis"] = $this->kelompok4_model->get_jenis_randis();
+
+            $data['randis'] = $this->kelompok4_model->get_randis_by_id($id);
+
+
+            if($_POST){
+
+//var_dump($_POST); die();
+
+
+                                if (empty($_FILES['foto_mobil']['size'])) {
+
+
+                                    $JABATAN = $this->input->post("JABATAN");
+                                    $NO_PLAT = $this->input->post("NO_PLAT");
+                                    $NO_RANGKA = $this->input->post("NO_RANGKA");
+                                    $NO_MESIN = $this->input->post("NO_MESIN");
+                                    $JENIS = $this->input->post("JENIS");
+                                    $TYPE = $this->input->post("TYPE");
+                                    $MERK = $this->input->post("MERK");
+                                    $SILINDER = $this->input->post("SILINDER");
+                                    $TAHUN = $this->input->post("TAHUN");
+
+                                    $GAMBAR = $this->input->post("foto_mobil");
+
+                                } else {
+
+                                    $file_name="";
+                                    $config['upload_path'] = './uploads/foto_mobil/';
+                                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                                    $new_name = $this->input->post("NO_PLAT").$this->input->post("MERK");
+                                    $config['file_name'] = $new_name;
+                                    $this->load->library('upload', $config);
+
+                                    if ( ! $this->upload->do_upload('foto_mobil')){
+                                        $error = array('error' => $this->upload->display_errors());
+                            
+                                    }else{
+                                        $this->upload->data();
+
+           
+                                        $path = $_FILES['foto_mobil']['name'];
+                                        $ext = pathinfo($path, PATHINFO_EXTENSION);
+                                        
+                                    } 
+
+                                    $JABATAN = $this->input->post("JABATAN");
+                                    $NO_PLAT = $this->input->post("NO_PLAT");
+                                    $NO_RANGKA = $this->input->post("NO_RANGKA");
+                                    $NO_MESIN = $this->input->post("NO_MESIN");
+                                    $JENIS = $this->input->post("JENIS");
+                                    $TYPE = $this->input->post("TYPE");
+                                    $MERK = $this->input->post("MERK");
+                                    $SILINDER = $this->input->post("SILINDER");
+                                    $TAHUN = $this->input->post("TAHUN");
+
+                                    $GAMBAR = $NO_PLAT.$MERK.'.'.$ext;
+                                }
+                                
+                            
+ 
+            
+                            
+                                $this->load->model("common_model");
+                                    $update_array = array(
+                                        "JABATAN" => $JABATAN,
+                                        "NO_PLAT" => $NO_PLAT,
+                                        "NO_RANGKA" => $NO_RANGKA,
+                                        "NO_MESIN" => $NO_MESIN,
+                                        "JENIS" => $JENIS,
+                                        "TYPE" => $TYPE,
+                                        "MERK" => $MERK,
+                                        "SILINDER" => $SILINDER,
+                                        "TAHUN" => $TAHUN,
+                                        "GAMBAR" => $GAMBAR,
+                                        'flag_del' => 0
+                                    );
+
+                                $this->common_model->data_update("randis",$update_array,array("NO"=>$id));
+
+
+                        $data["sukses"] =  "data berhasil disimpan";
+                        redirect("kelompok4/list_randis");
+
+
+
+                           
+
+
+            }
+
+
+           
+            $this->load->view("kelompok4/edit_randis",$data);
+          
+        }
+
+    }
+
+
+   //  public function list_edit_randis(){
+
+   //          if(_is_user_login($this)){
+   //          $data = array();
+   //          $this->load->model("kelompok4_model");
+   //          $data["data_randis"] =   $this->kelompok4_model->get_all_randis_filter_by_flag_del_order_by_time();
+
+            
+   //          $this->load->view("kelompok4/list_edit_randis",$data);
+          
+   //      }
+
+   // }
+
    
 }
 

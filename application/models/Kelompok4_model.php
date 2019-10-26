@@ -2,7 +2,7 @@
 class Kelompok4_model extends CI_Model{
 
     public function get_merek_randis(){
-        $q = $this->db->query("select * from merekran");
+        $q = $this->db->query("select * from merekran where flag_del='0'");
         return $q->result();
     }
    
@@ -12,15 +12,15 @@ class Kelompok4_model extends CI_Model{
     }
 
     public function get_type_kendaraan(){
-        $q = $this->db->query("select * from typeran");
+        $q = $this->db->query("select * from typeran where flag_del='0'");
         return $q->result();
     }
     public function get_jabatan(){
-        $q = $this->db->query("select * from pemegangran");
+        $q = $this->db->query("select * from pemegangran where flag_del='0'");
         return $q->result();
     }
     public function get_jenis_randis(){
-        $q = $this->db->query("select * from jenisran");
+        $q = $this->db->query("select * from jenisran where flag_del='0'");
         return $q->result();
     }
 
@@ -41,6 +41,16 @@ class Kelompok4_model extends CI_Model{
         $this->db->where('NO',$id);
         $q = $this->db->get();
         return $q->result();
+    }
+
+
+    public function get_randis_by_id($id){
+        
+        $this->db->select();
+        $this->db->from('randis');
+        $this->db->where('NO',$id);
+        $q = $this->db->get();
+        return $q->row();
     }
 }
 ?>
