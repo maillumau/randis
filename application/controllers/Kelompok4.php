@@ -137,7 +137,10 @@ class Kelompok4 extends CI_Controller {
                         $config['allowed_types'] = 'gif|jpg|png|jpeg';
                         $new_name = $this->input->post("NO_PLAT").$this->input->post("MERK");
                         $config['file_name'] = $new_name;
+                        $config['width']= 310;
+                        $config['height']= 136;
                         $this->load->library('upload', $config);
+                        $this->upload->overwrite = true;
 
                     
 
@@ -150,6 +153,15 @@ class Kelompok4 extends CI_Controller {
                         
                                 }else{
                                     $this->upload->data();
+                                        $config['image_library'] = 'gd2';
+                                        $config['source_image'] = $image_data['full_path']; //get original image
+                                        $config['maintain_ratio'] = TRUE;
+                                        $config['width'] = 310;
+                                        $config['height'] = 136;
+                                        $this->load->library('image_lib', $config);
+                                        if (!$this->image_lib->resize()) {
+                                            $this->handle_error($this->image_lib->display_errors());
+                                        }
 
        
                                     $path = $_FILES['foto_mobil']['name'];
@@ -313,6 +325,7 @@ class Kelompok4 extends CI_Controller {
                                     $new_name = $this->input->post("NO_PLAT").$this->input->post("MERK");
                                     $config['file_name'] = $new_name;
                                     $this->load->library('upload', $config);
+                                    $this->upload->overwrite = true;
 
                                     if ( ! $this->upload->do_upload('foto_mobil')){
                                         $error = array('error' => $this->upload->display_errors());
@@ -320,6 +333,16 @@ class Kelompok4 extends CI_Controller {
                                     }else{
                                         $this->upload->data();
 
+                                        $image_data = $this->upload->data();
+                                        $config['image_library'] = 'gd2';
+                                        $config['source_image'] = $image_data['full_path']; //get original image
+                                        $config['maintain_ratio'] = TRUE;
+                                        $config['width'] = 310;
+                                        $config['height'] = 136;
+                                        $this->load->library('image_lib', $config);
+                                        if (!$this->image_lib->resize()) {
+                                            $this->handle_error($this->image_lib->display_errors());
+                                        }
            
                                         $path = $_FILES['foto_mobil']['name'];
                                         $ext = pathinfo($path, PATHINFO_EXTENSION);
@@ -362,7 +385,7 @@ class Kelompok4 extends CI_Controller {
 
 
                         $data["sukses"] =  "data berhasil disimpan";
-                        redirect("kelompok4/list_randis");
+                        redirect("kelompok4/list_edit_randis");
 
 
 
@@ -380,19 +403,19 @@ class Kelompok4 extends CI_Controller {
     }
 
 
-   //  public function list_edit_randis(){
+    public function list_edit_randis(){
 
-   //          if(_is_user_login($this)){
-   //          $data = array();
-   //          $this->load->model("kelompok4_model");
-   //          $data["data_randis"] =   $this->kelompok4_model->get_all_randis_filter_by_flag_del_order_by_time();
+            if(_is_user_login($this)){
+            $data = array();
+            $this->load->model("kelompok4_model");
+            $data["data_randis"] =   $this->kelompok4_model->get_all_randis_filter_by_flag_del();
 
             
-   //          $this->load->view("kelompok4/list_edit_randis",$data);
+            $this->load->view("kelompok4/list_edit_randis",$data);
           
-   //      }
+        }
 
-   // }
+   }
 
    
 }
