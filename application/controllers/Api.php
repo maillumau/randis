@@ -109,9 +109,24 @@ class Api extends CI_Controller {
               $data = array(); 
            
               $q = $this->db->query("SELECT * FROM kuatalmat WHERE noreg_baru='$no_reg'");
-              $data["result"] = $q->result();
+              $resultVar = array();
+
+              foreach ($q->result_array() as $row) {
+
+                     array_push($resultVar,array(
+                    "noreg"=>$row['noreg_baru'],
+                    "pemegang"=>$row['pemegang'],
+                    "no_rangka"=>$row['no_rangka'],
+                    "foto"=>$row['foto'],
+                    "jenis"=>$row['jenis'],
+                    ));
+                
+              }
            
-             echo json_encode($data);
+           
+             echo json_encode(array(
+              'result'=>$resultVar
+            ));
     }
 
 
