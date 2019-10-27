@@ -45,7 +45,67 @@ class Api extends CI_Controller {
            
              echo json_encode($data);
     }
+
+
+
+
+    public function login_to_api($login){
+
+
+      if ($login == 'login') {
+
+              $this->load->library('form_validation');
+              $this->form_validation->set_rules('username', 'Username', 'trim|required');
+              $this->form_validation->set_rules('password', 'Password', 'trim|required');
+              if ($this->form_validation->run() == FALSE) {
+                        $data["responce"] = false;
+                        $data["error"] = $this->form_validation->error_string();
+              }else{    
+
+                         $username = $this->input->post("username");
+                         $password = md5($this->input->post("password"));
+
+                       
+                         $q = $this->db->query("select * from users where user_name ='$username' and user_password='$password'");
+                         $user_data = $q->row();      
+                         if (empty($user_data)){
+                                $data['error'] = true; 
+                                $data['message'] = 'Invalid username or password';
+                               
+                            } else {
+                                $data['error'] = false; 
+                                $data['message'] = 'Login successfull'; 
+                                $data['user'] = $username; 
+
+                            }
+                           
+                        
+               }
+               echo json_encode($data); 
+
+      } else {
+
+            $data['error'] = true; 
+            $data['message'] = 'Invalid Action.';
+      }
+     
+      
     
+    }
+
+
+    public function tampil_data_by($no_reg){
+              $data = array(); 
+           
+              $q = $this->db->query("SELECT * FROM kuatalmat WHERE noreg_baru='$no_reg'");
+              $data["result"] = $q->result();
+           
+             echo json_encode($data);
+    }
+
+  
  
 }
+
+
 ?>
