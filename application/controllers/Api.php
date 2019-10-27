@@ -73,9 +73,20 @@ class Api extends CI_Controller {
                                 $data['message'] = 'Invalid username or password';
                                
                             } else {
+
+                    
+                                $id = $user_data->user_id;
+                                $username =  $user_data->user_name;
+                                $email = $user_data->email;
+
+                                $user = array(
+                                'id'=>$id, 
+                                'username'=>$username, 
+                                'email'=>$email
+                                );
                                 $data['error'] = false; 
                                 $data['message'] = 'Login successfull'; 
-                                $data['user'] = $username; 
+                                $data['user'] = $user; 
 
                             }
                            
@@ -101,6 +112,30 @@ class Api extends CI_Controller {
               $data["result"] = $q->result();
            
              echo json_encode($data);
+    }
+
+
+    public function tampil_data(){
+              $data = array(); 
+           
+              $q = $this->db->query("SELECT * FROM kuatalmat");
+              $data["result"] = $q->result();
+           
+             echo json_encode($data);
+    }
+
+
+    public function tampil_jml_bbm(){
+
+
+              $data = array(); 
+           
+              die('Underconstruction');
+           
+             echo json_encode($data);
+
+
+
     }
 
   
