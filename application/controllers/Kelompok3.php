@@ -137,7 +137,7 @@ class Kelompok3 extends CI_Controller {
                         $config['allowed_types'] = 'gif|jpg|png|jpeg';
                         $new_name = $this->input->post("noreg_baru").$this->input->post("merek");
                         $config['file_name'] = $new_name;
-                        $this->load->library('upload', $config
+                        $this->load->library('upload', $config);
                         $this->upload->overwrite = true;
                     
 
