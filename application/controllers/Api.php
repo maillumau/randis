@@ -153,6 +153,30 @@ class Api extends CI_Controller {
 
     }
 
+
+    public function check_connection(){
+
+
+      $data = array();
+      $status = array(); 
+           
+      $q = $this->db->query("SELECT * FROM app_access");
+      $data = $q->row();
+           
+      //echo json_encode($data->access);
+
+      if ($data->access == 1) {
+
+          $status["konek"] = $q->result();
+          echo json_encode($status);
+      } else {
+
+          $status["konek"] = $q->result();
+          echo json_encode($status);
+      }
+
+
+    }
   
  
 }
