@@ -177,6 +177,52 @@ class Api extends CI_Controller {
 
 
     }
+
+    public function tampil_data_by_kategori($query){
+
+            $resultVar = array();
+
+
+            if ($query == 'B' || $query == 'RR' || $query == 'RB') {
+              $q = $this->db->query("SELECT * FROM kuatalmat WHERE kondisi='$query'");
+              
+            }else if ($query == '88' || $query == '92' || $query == 'HSD') {
+
+              if ($query=='88') {
+                  $query = 'RON 88';
+              }elseif ($query=='92') {
+                  $query = 'RON 92';
+              }
+
+              $q = $this->db->query("SELECT * FROM kuatalmat WHERE bahan_bakar='$query'");
+              
+            } elseif ($query == 'R2' || $query == 'Sedan' || $query == 'Minibus' || $query == 'Truk' || $query == 'Bus') {
+              if ($query == 'R2') {
+                  $query = 'Sepeda Motor';
+              }
+              $q = $this->db->query("SELECT * FROM kuatalmat WHERE jenis='$query'");
+            }
+
+
+            foreach ($q->result_array() as $row) {
+
+                     array_push($resultVar,array(
+                    "noreg"=>$row['noreg_baru'],
+                    "pemegang"=>$row['pemegang'],
+                    "no_rangka"=>$row['no_rangka'],
+                    "foto"=>$row['foto'],
+                    "jenis"=>$row['jenis'],
+                    "kondisi"=>$row['kondisi'],
+                    "bahan_bakar"=>$row['bahan_bakar'],
+                    ));
+                
+            } 
+           
+           
+            echo json_encode(array('result'=>$resultVar));
+            
+
+    }
   
  
 }
