@@ -223,6 +223,67 @@ class Api extends CI_Controller {
             
 
     }
+
+
+    public function tampil_data_by_rekap(){
+
+
+              $data = array(); 
+           
+              $mobil2000 = $this->db->query("select * FROM kuatalmat WHERE tahun <= '2000'");
+              $jml_mobil2000 = $mobil2000->num_rows();
+
+
+              $mobil2010 = $this->db->query("select * FROM kuatalmat WHERE tahun BETWEEN '2000' AND '2010'");
+              $jml_mobil2010 = $mobil2010->num_rows();
+
+
+
+              $mobil2019 = $this->db->query("select * FROM kuatalmat WHERE tahun BETWEEN '2011' AND '2019'");
+              $jml_mobil2019 = $mobil2019->num_rows();
+
+
+              $baik = $this->db->query("select * FROM kuatalmat WHERE kondisi = 'Baik'");
+              $jml_baik = $baik->num_rows();
+
+              $rr = $this->db->query("select * FROM kuatalmat WHERE kondisi = 'Rusak Ringan'");
+              $jml_rr = $rr->num_rows();
+
+
+              $rb = $this->db->query("select * FROM kuatalmat WHERE kondisi = 'Rusak Berat'");
+              $jml_rb = $rb->num_rows();
+         
+
+              $ron88 = $this->db->query("select * FROM kuatalmat WHERE bahan_bakar = 'ron 88'");
+              $jml_88 = $ron88->num_rows();
+
+
+              $ron92 = $this->db->query("select * FROM kuatalmat WHERE bahan_bakar = 'ron 92'");
+              $jml_92 = $ron92->num_rows();
+         
+         
+              $hsd = $this->db->query("select * FROM kuatalmat WHERE bahan_bakar = 'HSD'");
+              $jml_hsd = $hsd->num_rows();
+
+
+              $totalran = $this->db->query("select * FROM kuatalmat");
+              $jml_totalran = $totalran->num_rows();
+
+
+              $hasil22 = array(['mobil2000' => "$jml_mobil2000",
+                        'mobil2010' => "$jml_mobil2010",
+                        'mobil2019' => "$jml_mobil2019",
+                        'baik' =>$jml_baik,
+                        'rr'=>$jml_rr,
+                        'rb'=>$jml_rb, 
+                        'ron88'=>$jml_88, 
+                        'ron92'=>$jml_92, 
+                        'hsd'=>$jml_hsd, 
+                        'total'=>$jml_totalran]);
+           
+             echo json_encode(array('rekap'=>$hasil22));
+
+    }
   
  
 }
