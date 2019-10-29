@@ -165,7 +165,7 @@ class Api extends CI_Controller {
            
       //echo json_encode($data->access);
 
-      if ($data->access == 1) {
+      if ($data->access == '1') {
 
           $status["konek"] = $q->result();
           echo json_encode($status);
