@@ -111,14 +111,24 @@ class Api extends CI_Controller {
               $q = $this->db->query("SELECT * FROM kuatalmat WHERE noreg_baru='$no_reg'");
               $resultVar = array();
 
+              $result = $q->result();
+              
               foreach ($q->result_array() as $row) {
 
                      array_push($resultVar,array(
+                    "noreg_lama" => $row['noreg_lama'],
                     "noreg"=>$row['noreg_baru'],
                     "pemegang"=>$row['pemegang'],
                     "no_rangka"=>$row['no_rangka'],
                     "foto"=>$row['foto'],
                     "jenis"=>$row['jenis'],
+                    "no_mesin"=>$row['no_mesin'],
+                    "type"=>$row['type'],
+                    "merek"=>$row['merek'],
+                    "kubikasi"=>$row['kubikasi'],
+                    "tahun"=>$row['tahun'],
+                    "kondisi"=>$row['kondisi'],
+                    "bahan_bakar"=>$row['bahan_bakar'],
                     ));
                 
               }
