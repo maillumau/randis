@@ -86,6 +86,7 @@
                                                 <th>Jenis</th>
                                                 <th>Merk</th>
                                                 <th>Tipe</th>
+                                                <th>Bahan Bakar</th>
                                                 <th>Kubikasi</th>
                                                 <th>Tahun</th>
                                                 <th>Kondisi</th>
@@ -110,6 +111,7 @@
                                                 <td class="merek"><?php echo $randis->merek; ?></td>
                                                 <td><?php echo $randis->type; ?>
                                                 </td>
+                                                <td><?php echo $randis->bahan_bakar; ?></td>
                                                 <td><?php echo $randis->kubikasi; ?></td>
                                                 <td><?php echo $randis->tahun; ?></td>
                                                 <td><?php echo $randis->kondisi; ?></td>
@@ -158,6 +160,7 @@
                                                 <th>Jenis</th>
                                                 <th>Merk</th>
                                                 <th>Tipe</th>
+                                                <th>Bahan Bakar</th>
                                                 <th>Kubikasi</th>
                                                 <th>Tahun</th>
                                                 <th>Kondisi</th>
