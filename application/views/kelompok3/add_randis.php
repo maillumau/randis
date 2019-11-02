@@ -117,16 +117,7 @@
                                         </div>
 
 
-                                        <div class="form-group col-lg-3">
-                                            <label for="type">Tipe Kendaraan</label>
-                                            <select name="type"  class="form-control form-control-lg" data-placeholder="Pilih TYPE KENDARAAN">
-                    
-                                                <?php foreach($type as $type){?>
-                                                  <option value="<?php echo $type->type; ?>"><?php echo $type->type; ?>
-                                       
-                                                <?php } ?>
-                                          </select>
-                                        </div>
+
 
 
 
@@ -142,6 +133,18 @@
                                        
                                                 <?php } 
                                                 ?>
+                                          </select>
+                                        </div>
+
+
+                                        <div class="form-group col-lg-3">
+                                            <label for="type">Tipe Kendaraan</label>
+                                            <select name="type"  class="form-control form-control-lg" data-placeholder="Pilih TYPE KENDARAAN">
+                    
+                                                <?php foreach($type as $type){?>
+                                                  <option value="<?php echo $type->type; ?>"><?php echo $type->type; ?>
+                                       
+                                                <?php } ?>
                                           </select>
                                         </div>
 

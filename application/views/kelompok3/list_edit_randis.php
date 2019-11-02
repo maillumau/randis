@@ -84,8 +84,8 @@
                                                 <th>No Rangka</th>
                                                 <th>No Mesin</th>
                                                 <th>Jenis</th>
-                                                <th>Type</th>
                                                 <th>Merk</th>
+                                                <th>Tipe</th>
                                                 <th>Kubikasi</th>
                                                 <th>Tahun</th>
                                                 <th>Kondisi</th>
@@ -107,9 +107,9 @@
                                                 <td><?php echo $randis->no_mesin; ?></td>
                                                 <td><?php echo $randis->jenis; ?>
                                                 </td>
+                                                <td class="merek"><?php echo $randis->merek; ?></td>
                                                 <td><?php echo $randis->type; ?>
                                                 </td>
-                                                <td class="merek"><?php echo $randis->merek; ?></td>
                                                 <td><?php echo $randis->kubikasi; ?></td>
                                                 <td><?php echo $randis->tahun; ?></td>
                                                 <td><?php echo $randis->kondisi; ?></td>
@@ -121,7 +121,7 @@
                                                                 $img = $this->config->item('base_url').'uploads/foto_mobil_kel3/'.$randis->foto; 
                                                             }  
                                                      ?>
-                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 200px; width: 200px;" >
+                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 100px; width: 100px;" >
                               
                                                 </td>
                                                 <td>
@@ -156,8 +156,8 @@
                                                 <th>No Rangka</th>
                                                 <th>No Mesin</th>
                                                 <th>Jenis</th>
-                                                <th>Type</th>
                                                 <th>Merk</th>
+                                                <th>Tipe</th>
                                                 <th>Kubikasi</th>
                                                 <th>Tahun</th>
                                                 <th>Kondisi</th>

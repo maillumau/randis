@@ -136,6 +136,36 @@
                                         </div>
 
 
+                                        
+                                        <div class="form-group col-lg-3">
+                                            <label for="merk">Merek Kendaraan</label>
+                                            <select name="merek"  class="form-control form-control-lg" data-placeholder="Pilih MEREK KENDARAAN">
+
+
+
+                                                <?php foreach($merk as $merek){
+
+                                                    if ($kuatalmat->merek == $merek->merek) { ?>
+                                                    
+                                                    <option value="<?php echo $kuatalmat->merek; ?>" selected><?php echo $kuatalmat->merek; ?> </option>
+                                                <?php 
+                                                     } else { ?>
+
+                                                    <option value="<?php echo $merek->merek; ?>"><?php echo $merek->merek; ?> </option>
+
+                                                 <?php 
+
+                                                     }
+
+                                                  ?>
+
+                                       
+                                                <?php } ?>
+
+                                          </select>
+                                        </div>
+
+
                                         <div class="form-group col-lg-3">
                                             <label for="type">Tipe Kendaraan</label>
                                             <select name="type"  class="form-control form-control-lg" data-placeholder="Pilih TYPE KENDARAAN">
@@ -167,33 +197,6 @@
 
 
 
-                                        <div class="form-group col-lg-3">
-                                            <label for="merk">Merek Kendaraan</label>
-                                            <select name="merek"  class="form-control form-control-lg" data-placeholder="Pilih MEREK KENDARAAN">
-
-
-
-                                                <?php foreach($merk as $merek){
-
-                                                    if ($kuatalmat->merek == $merek->merek) { ?>
-                                                    
-                                                    <option value="<?php echo $kuatalmat->merek; ?>" selected><?php echo $kuatalmat->merek; ?> </option>
-                                                <?php 
-                                                     } else { ?>
-
-                                                    <option value="<?php echo $merek->merek; ?>"><?php echo $merek->merek; ?> </option>
-
-                                                 <?php 
-
-                                                     }
-
-                                                  ?>
-
-                                       
-                                                <?php } ?>
-
-                                          </select>
-                                        </div>
 
                                         <div class="form-group col-lg-2">
                                             <label for="">Bahan Bakar</label>

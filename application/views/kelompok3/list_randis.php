@@ -84,8 +84,8 @@
                                                 <th>No Rangka</th>
                                                 <th>No Mesin</th>
                                                 <th>Jenis</th>
-                                                <th>Type</th>
                                                 <th>Merk</th>
+                                                <th>Tipe</th>
                                                 <th>Kubikasi</th>
                                                 <th>Tahun</th>
                                                 <th>Kondisi</th>
@@ -107,9 +107,9 @@
                                                 <td><?php echo $randis->no_mesin; ?></td>
                                                 <td><?php echo $randis->jenis; ?>
                                                 </td>
+                                                <td class="merek"><?php echo $randis->merek; ?></td>
                                                 <td><?php echo $randis->type; ?>
                                                 </td>
-                                                <td class="merek"><?php echo $randis->merek; ?></td>
                                                 <td><?php echo $randis->kubikasi; ?></td>
                                                 <td><?php echo $randis->tahun; ?></td>
                                                 <td><?php echo $randis->kondisi; ?></td>
@@ -156,8 +156,8 @@
                                                 <th>No Rangka</th>
                                                 <th>No Mesin</th>
                                                 <th>Jenis</th>
-                                                <th>Type</th>
                                                 <th>Merk</th>
+                                                <th>Tipe</th>
                                                 <th>Kubikasi</th>
                                                 <th>Tahun</th>
                                                 <th>Kondisi</th>
