@@ -109,10 +109,12 @@ class Kelompok3 extends CI_Controller {
 
             
 
+            $data = array();
+            $this->load->model("kelompok3_model");
+            $data["data_randis"] =   $this->kelompok3_model->get_all_randis_filter_by_flag_del();
 
 
-
-            $this->load->view("kelompok3/dashboard",$data);
+            $this->load->view("kelompok3/list_randis",$data);
           
         }
     }
@@ -143,20 +145,16 @@ class Kelompok3 extends CI_Controller {
 
                         
 
-                        if($_FILES["foto"]["size"] > 0)
+                        if($_FILES["foto"]["size"] > 0){
 
-                                if ( ! $this->upload->do_upload('foto')){
-                                    $error = array('error' => $this->upload->display_errors());
-                        
-                                }else{
-                                    $this->upload->data();
+                                $this->upload->do_upload('foto');
+                                $this->upload->data();
 
        
-                                    $path = $_FILES['foto']['name'];
-                                    $ext = pathinfo($path, PATHINFO_EXTENSION);
-                                    
-                                } 
-
+                                $path = $_FILES['foto']['name'];
+                                $ext = pathinfo($path, PATHINFO_EXTENSION);
+ 
+                           
                                 $noreg_lama = $this->input->post("noreg_lama");
                                 $noreg_baru = $this->input->post("noreg_baru");
                                 $no_rangka = $this->input->post("no_rangka");
@@ -196,7 +194,9 @@ class Kelompok3 extends CI_Controller {
 
                         $data["sukses"] =  "data berhasil disimpan";
 
-
+                    } else {
+                        $data["sukses"] =  "Error";
+                    }
             }
 
 
