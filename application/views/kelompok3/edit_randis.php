@@ -201,9 +201,21 @@
                                         <div class="form-group col-lg-2">
                                             <label for="">Bahan Bakar</label>
                                             <select name="bahan_bakar"  class="form-control form-control-lg" data-placeholder="Pilih Bahan Bakar ">
-                                                <option value="RON 88">RON 88</option>
-                                                <option value="RON 91">RON 91</option>
-                                                <option value="HSD">HSD</option>                                      
+    
+                                                <?php if($kuatalmat->bahan_bakar == 'RON 88'){ ?>
+                                                    <option value="RON 88" selected="true">RON 88</option>
+                                                    <option value="RON 92">RON 92</option>
+                                                    <option value="HSD">HSD</option>    
+                                                <?php } elseif($kuatalmat->bahan_bakar == 'RON 92'){ ?>
+                                                    <option value="RON 88">RON 88</option>
+                                                    <option value="RON 92" selected="true">RON 92</option>
+                                                    <option value="HSD">HSD</option>  
+                                                <?php } elseif($kuatalmat->bahan_bakar == 'HSD'){ ?>
+                                                    <option value="RON 88">RON 88</option>
+                                                    <option value="RON 92">RON 92</option>
+                                                    <option value="HSD" selected="true">HSD</option>     
+                                                <?php } ?>
+
                                           </select>
                                         </div>
 
@@ -230,10 +242,6 @@
 
                                        
                                                 <?php } ?>
-
-
-
-
 
                                           </select>
                                         </div>
