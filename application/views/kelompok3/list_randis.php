@@ -121,7 +121,7 @@
                                                                 $img = $this->config->item('base_url').'uploads/foto_mobil_kel3/'.$randis->foto; 
                                                             }  
                                                      ?>
-                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 100px; width: 100px;" >
+                                                        <img src="<?php echo $img; ?>" class="img-circle" style="height: 100px; width: 120px;" >
                               
                                                 </td>
                                                 <td>
