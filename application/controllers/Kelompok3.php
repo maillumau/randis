@@ -500,17 +500,12 @@ class Kelompok3 extends CI_Controller {
                                     $this->load->library('upload', $config);
                                     $this->upload->overwrite = true;
 
-                                    if ( ! $this->upload->do_upload('foto')){
-                                        $error = array('error' => $this->upload->display_errors());
-                        
-                                    }else{
-                                        $this->upload->data();
-
-       
-                                        $path = $_FILES['foto']['name'];
-                                        @$ext = pathinfo($path, PATHINFO_EXTENSION);
+                                    $this->upload->do_upload('foto');
+                                    $this->upload->data();
+                                    $path = $_FILES['foto']['name'];
+                                    @$ext = pathinfo($path, PATHINFO_EXTENSION);
                                     
-                                    } 
+                                    
 
                                     $noreg_lama = $this->input->post("noreg_lama");
                                     $noreg_baru = $this->input->post("noreg_baru");
